@@ -1,4 +1,7 @@
-# Pang Rent
+# Pango Rent
+![Pango](.images/pango.png) 
+
+## Setup
 To get started ensure that the following has been executed on your development machine:
 
 ```
