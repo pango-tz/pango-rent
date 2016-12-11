@@ -8,7 +8,7 @@ import { SplashPage } from '../pages/splash/splash';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class PangoRentApp {
   rootPage = SplashPage;
 
   constructor(platform: Platform, config: Config) {

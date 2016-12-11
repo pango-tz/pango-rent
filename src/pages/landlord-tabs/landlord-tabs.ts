@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
-
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-
+import { Platform } from 'ionic-angular';
+import{ LandlordHomePage } from '../landlord-home/landlord-home';
+import{ LandlordSettingsPage } from '../landlord-settings/landlord-settings';
+import{ LandlordManagePage } from '../landlord-manage/landlord-manage';
 @Component({
   templateUrl: 'landlord-tabs.html'
 })
 export class LandlordTabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  tab1Root: any = HomePage;
-  tab2Root: any = AboutPage;
-  tab3Root: any = ContactPage;
+  tab1Root: any = LandlordHomePage;
+  tab2Root: any = LandlordManagePage;
+  tab3Root: any = LandlordSettingsPage;
 
-  constructor() {
+  constructor(public platform: Platform) {
 
   }
 }
