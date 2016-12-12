@@ -8,11 +8,16 @@
 
   <ion-navbar>
     <ion-title>Favorites</ion-title>
+    
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-tabs tabsPlacement="top" tabsHighlight=true padding>
+    <ion-tab [root]="tab1Root" tabTitle="Favorites"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="Contacted"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="On Hold"></ion-tab>
+  </ion-tabs>
 </ion-content>
