@@ -1,0 +1,19 @@
+<ion-navbar color="dark">
+    <img height=47 src="assets/img/logos/pango.png">
+    <ion-buttons end bottom small>
+        <button *ngIf="showCreateAlertButton" (click) = "emitCreateAlert()" text-capitalize ion-button small>
+            <ion-icon name="alarm"></ion-icon>  &nbsp;Create Alert
+        </button>
+        <button *ngIf="showFilterButton" (click) = "emitFilter()" text-capitalize ion-button small>
+            Filter
+        </button>
+    </ion-buttons>
+</ion-navbar>
+<ion-toolbar color="light">
+    <ion-buttons start small left>
+        <button *ngIf="showBackButton" (click) = "onBackButtonClicked()" color="primary" ion-button small>
+            <ion-icon name="arrow-back"></ion-icon>&nbsp; Back
+        </button>
+    </ion-buttons>
+    <ion-title small text-center>{{subTitle}}</ion-title>
+</ion-toolbar>

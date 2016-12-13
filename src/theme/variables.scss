@@ -22,18 +22,27 @@
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
+  primary:    #00aeff,//#387ef5,
+  secondary:  #00aeff,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light: (
+    base: #fff,
+    contrast: #00aeff
+  ), //#f4f4f4,
+  dark: (
+    base: #000,
+    contrast: #ccc
+  )
 );
 
+$tabs-color-active: #fff;
+$tabs-background: color($colors, dark, base);
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$tabs-ios-tab-color-active: $tabs-color-active;
+$tabs-ios-background: $tabs-background;
 
 
 
@@ -41,15 +50,15 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
+$tabs-md-tab-color-active: $tabs-color-active;
+$tabs-md-background: $tabs-background;
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-
+$tabs-wp-tab-color-active: $tabs-color-active;
+$tabs-wp-background: $tabs-background;
 
 // App Theme
 // --------------------------------------------------

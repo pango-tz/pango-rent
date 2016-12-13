@@ -8,10 +8,10 @@ import { NavController } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-rent-favorites-favorites',
-  templateUrl: 'rent-favorites-favorites.html'
+  selector: 'page-rent-favorites-saved',
+  templateUrl: 'rent-favorites-saved.html'
 })
-export class RentFavoritesFavoritesPage {
+export class RentFavoritesSavedPage {
 
   constructor(public navCtrl: NavController) {}
 

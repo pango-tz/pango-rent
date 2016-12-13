@@ -19,4 +19,11 @@ export class RentSearchPage {
     console.log('Hello RentSearchPage Page');
   }
 
+  createAlert(event: any) {
+    console.log("we got a create alert event");
+  }
+  
+  filter(event: any) {
+    console.log("we got a filter event");
+  }
 }

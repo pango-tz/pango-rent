@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {RentFavoritesContactedPage} from '../rent-favorites-contacted/rent-favorites-contacted';
-import {RentFavoritesFavoritesPage} from '../rent-favorites-favorites/rent-favorites-favorites';
+import {RentFavoritesSavedPage} from '../rent-favorites-saved/rent-favorites-saved';
 import {RentFavoritesOnHoldPage} from '../rent-favorites-on-hold/rent-favorites-on-hold';
 /*
   Generated class for the RentFavorites page.
@@ -15,7 +15,7 @@ import {RentFavoritesOnHoldPage} from '../rent-favorites-on-hold/rent-favorites-
 })
 export class RentFavoritesPage {
 
-  tab1Root = RentFavoritesFavoritesPage;
+  tab1Root = RentFavoritesSavedPage;
   tab2Root = RentFavoritesContactedPage;
   tab3Root = RentFavoritesOnHoldPage;
   
