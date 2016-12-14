@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController} from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 import { SignupPage } from '../../pages/signup/signup';
 
@@ -9,20 +9,20 @@ import { SignupPage } from '../../pages/signup/signup';
 })
 export class PangoNavbar {
     @Input('subTitle') subTitle;
-    @Input('showBackButton') showBackButton: boolean;
+    @Input('backButtonText') backButtonText: string = 'Back';
+    @Input('useCustomBackButtonEvent') useCustomBackButtonEvent = false;
+    @Input('showBackButton') showBackButton: boolean = false;
     @Input('showFilterButton') showFilterButton: boolean = true;
     @Input('showCreateAlertButton') showCreateAlertButton: boolean = true;
     @Input('showLoginButton') showLoginButton: boolean = true;
     @Input('showSignupButton') showSignupButton: boolean = true;
     @Output('createAlert') createAlert: EventEmitter<any> = new EventEmitter();
     @Output('filter') filter: EventEmitter<any> = new EventEmitter();
-    
-    constructor (public navCtrl: NavController) { }
+
+    constructor (public navCtrl: NavController, private modalCtrl: ModalController) { }
 
     onBackButtonClicked() {
-        if (this.navCtrl.canGoBack()) {
-            this.navCtrl.pop();
-        }
+        this.navCtrl.pop();
     }
 
     emitCreateAlert() {
@@ -34,7 +34,9 @@ export class PangoNavbar {
     }
 
     navLogin(){
-        this.navCtrl.push(LoginPage);
+        let loginModal  = this.modalCtrl.create(LoginPage);
+        loginModal.present();
+        //this.navCtrl.push(LoginPage);
     }
 
     navSignup(){

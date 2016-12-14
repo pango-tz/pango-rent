@@ -18,7 +18,7 @@
 <ion-toolbar color="light">
     <ion-buttons start small left>
         <button *ngIf="showBackButton" (click) = "onBackButtonClicked()" color="primary" ion-button small>
-            <ion-icon name="arrow-back"></ion-icon>&nbsp; Back
+            <ion-icon name="arrow-back"></ion-icon>&nbsp; {{backButtonText}}
         </button>
     </ion-buttons>
     <ion-title small text-center>{{subTitle}}</ion-title>

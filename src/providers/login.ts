@@ -13,11 +13,12 @@ import {Storage} from '@ionic/storage';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class Login extends Base{
+export class Auth extends Base{
 
   constructor(public http: Http,  storage: Storage, @Inject(BASE_PATH) @Optional() basePath: string) {
     super(storage, basePath, 'authenticate');
   }
 
+  
 
 }
