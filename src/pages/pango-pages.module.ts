@@ -14,6 +14,8 @@ import {RentFavoritesContactedPage} from './rent-favorites-contacted/rent-favori
 import {RentFavoritesSavedPage} from './rent-favorites-saved/rent-favorites-saved';
 import {RentFavoritesOnHoldPage} from './rent-favorites-on-hold/rent-favorites-on-hold';
 import { SplashPage } from './splash/splash';
+import {LoginPage} from './login/login';
+import {SignupPage} from './signup/signup';
 @NgModule({
   declarations: [
     SplashPage,
@@ -28,7 +30,9 @@ import { SplashPage } from './splash/splash';
     LandlordSettingsPage,
     RentFavoritesOnHoldPage,
     RentFavoritesSavedPage,
-    RentFavoritesContactedPage
+    RentFavoritesContactedPage,
+    LoginPage,
+    SignupPage
   ],
   entryComponents: [
     SplashPage,
@@ -43,7 +47,9 @@ import { SplashPage } from './splash/splash';
     LandlordSettingsPage,
     RentFavoritesOnHoldPage,
     RentFavoritesSavedPage,
-    RentFavoritesContactedPage
+    RentFavoritesContactedPage,
+    LoginPage,
+    SignupPage
   ],
   exports: [
     SplashPage,
@@ -58,7 +64,9 @@ import { SplashPage } from './splash/splash';
     LandlordSettingsPage,
     RentFavoritesOnHoldPage,
     RentFavoritesSavedPage,
-    RentFavoritesContactedPage
+    RentFavoritesContactedPage,
+    LoginPage,
+    SignupPage
   ],
   imports: [IonicModule, PangoContainersModule]
 })

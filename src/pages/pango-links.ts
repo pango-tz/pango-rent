@@ -11,6 +11,8 @@ import{ LandlordHomePage } from './landlord-home/landlord-home';
 import{ LandlordSettingsPage } from './landlord-settings/landlord-settings';
 import{ LandlordManagePage } from './landlord-manage/landlord-manage';
 import { SplashPage } from './splash/splash';
+import {LoginPage} from './login/login';
+import {SignupPage} from './signup/signup';
 export const pangoLinks: Array<any> = [
     { component: SplashPage, segment: '', name: 'Splash Page' },
     { component: RentTabsPage, segment: 'rent', name: 'Rent' },
@@ -24,5 +26,7 @@ export const pangoLinks: Array<any> = [
     { component: RentFavoritesOnHoldPage, segment: 'rent', name: 'Rent Favorites On Hold' },
     { component: LandlordSettingsPage, segment: 'settings', name: 'Landlord Settings' },
     { component: LandlordManagePage, segment: 'manage', name: 'Landlord Settings' },
-    { component: LandlordHomePage, segment: 'home', name: 'Landlord Home' }
+    { component: LandlordHomePage, segment: 'home', name: 'Landlord Home' },
+    { component: LoginPage, segment: 'login', name: 'Login' },
+    { component: SignupPage, segment: 'signup', name: 'Sign Up' }
 ]

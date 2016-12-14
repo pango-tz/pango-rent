@@ -7,6 +7,12 @@
         <button *ngIf="showFilterButton" (click) = "emitFilter()" text-capitalize ion-button small>
             Filter
         </button>
+        <button *ngIf="showLoginButton" (click) = "navLogin()" text-capitalize ion-button small>
+            Login
+        </button>
+        <button *ngIf="showSignupButton" (click) = "navSignup()" text-capitalize ion-button small>
+            Sign Up
+        </button>
     </ion-buttons>
 </ion-navbar>
 <ion-toolbar color="light">
