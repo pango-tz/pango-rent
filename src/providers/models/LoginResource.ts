@@ -24,8 +24,8 @@
 
 export interface LoginResource {
     
-    emailAddress?: string;
+    userName: string;
 
-    password?: string;
+    password: string;
 
 }

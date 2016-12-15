@@ -1,4 +1,4 @@
-import { Http, Headers, URLSearchParams, RequestOptions, Response }                    from '@angular/http';
+import { Http, Headers, RequestOptions }                    from '@angular/http';
 import {STORAGE_GLOBALS} from './constants';
 import {Storage} from '@ionic/storage';
 import {Observable} from 'rxjs/Observable';
@@ -13,7 +13,7 @@ export interface HeaderReference {
 export abstract class Base {
 
 
-    constructor(private storage: Storage, private basePath: string, private path: string) { }
+    constructor(private storage: Storage, private basePath: string,  private path: string) { }
     
     protected getCallPath() {
         return `${this.basePath}/${this.path}`;

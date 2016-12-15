@@ -2,5 +2,11 @@
   "name": "pango-rent",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/apis/v1",
+      "proxyUrl": "http://dev.pango-apis.com/apis/v1"
+    }
+  ]
 }

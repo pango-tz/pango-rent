@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import {Auth} from '../../providers/auth';
+import {LoginResponse} from '../../providers/models/models';
 /*
   Generated class for the Login page.
 
@@ -13,10 +14,17 @@ import { NavController } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public auth: Auth) {
+    this.auth.login({
+      userName: 'iddy.magohe@ceitechs.com',
+      password: '123456'
+    }).subscribe((loginResponse: LoginResponse) => {
+      console.log(loginResponse);
+    });
+  }
 
-  ionViewDidLoad() {
-    console.log('Hello LoginPage Page');
+  ionViewDidLoad(Auth) {
+    
   }
 
 }
