@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Tab } from 'ionic-angular';
+import { Platform, Tabs, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
@@ -13,7 +13,8 @@ import { RentSettingsPage } from '../rent-settings/rent-settings';
 })
 export class RentTabsPage {
 
-  @ViewChild('mainRentTabs') mainRentTabs: Tab;
+  @ViewChild('mainRentTabs') mainRentTabs: Tabs;
+
 
   // this tells the tabs component which Pages
   // should be each tab's root Page
@@ -21,10 +22,15 @@ export class RentTabsPage {
   tab2Root: any = RentAlertsPage;
   tab3Root: any = RentFavoritesPage;
   tab4Root: any = RentSettingsPage
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public navCtrl: NavController) {
     
   }
+  
 
   ionViewDidLoad() {
+    this.mainRentTabs.ionChange.subscribe((something, error) => {
+      console.log(error);
+    })
   }
+
 }

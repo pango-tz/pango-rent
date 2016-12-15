@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { Geolocation } from 'ionic-native';
 /*
   Generated class for the RentSearch page.
 
@@ -13,7 +13,16 @@ import { NavController } from 'ionic-angular';
 })
 export class RentSearchPage {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController) {
+    Geolocation.getCurrentPosition().then((resp) => {
+      console.log(resp);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    })
+  }
+
+
+
 
   ionViewDidLoad() {
     console.log('Hello RentSearchPage Page');

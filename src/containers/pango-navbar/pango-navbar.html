@@ -1,25 +1,40 @@
-<ion-navbar color="dark">
-    <img height=47 src="assets/img/logos/pango.png">
-    <ion-buttons end bottom small>
-        <button *ngIf="showCreateAlertButton" (click) = "emitCreateAlert()" text-capitalize ion-button small>
-            <ion-icon name="alarm"></ion-icon>  &nbsp;Create Alert
-        </button>
-        <button *ngIf="showFilterButton" (click) = "emitFilter()" text-capitalize ion-button small>
-            Filter
-        </button>
-        <button *ngIf="showLoginButton" (click) = "navLogin()" text-capitalize ion-button small>
-            Login
-        </button>
-        <button *ngIf="showSignupButton" (click) = "navSignup()" text-capitalize ion-button small>
-            Sign Up
-        </button>
-    </ion-buttons>
-</ion-navbar>
-<ion-toolbar color="light">
-    <ion-buttons start small left>
-        <button *ngIf="showBackButton" (click) = "onBackButtonClicked()" color="primary" ion-button small>
-            <ion-icon name="arrow-back"></ion-icon>&nbsp; {{backButtonText}}
-        </button>
-    </ion-buttons>
-    <ion-title small text-center>{{subTitle}}</ion-title>
-</ion-toolbar>
+<div *ngIf="!platform.is('mobileweb') && !platform.is('mobileDevice') && (platform.is('core') || platform.is('tablet'))">
+    <ion-navbar color="dark">
+        <img height=47 src="assets/img/logos/pango.png">
+        <ion-buttons end bottom small>
+            <button *ngIf="showCreateAlertButton" (click) = "emitCreateAlert()" text-capitalize ion-button small>
+                <ion-icon name="alarm"></ion-icon>  &nbsp;Create Alert
+            </button>
+            <button *ngIf="showFilterButton" (click) = "emitFilter()" text-capitalize ion-button small>
+                Filter
+            </button>
+            <button *ngIf="showLoginButton" (click) = "navLogin()" text-capitalize ion-button small>
+                Login
+            </button>
+            <button *ngIf="showSignupButton" (click) = "navSignup()" text-capitalize ion-button small>
+                Sign Up
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="light">
+        <ion-buttons start small left>
+            <button *ngIf="showBackButton" (click) = "onBackButtonClicked()" color="primary" ion-button small>
+                <ion-icon name="arrow-back"></ion-icon>&nbsp; {{backButtonText}}
+            </button>
+        </ion-buttons>
+        <ion-title small text-center>{{subTitle}}</ion-title>
+    </ion-toolbar>
+</div>
+<div *ngIf="platform.is('mobileweb') || platform.is('mobileDevice') || (platform.is('android') && !platform.is('tablet') )|| platform.is('iphone')">
+    <ion-toolbar color="dark">
+        <ion-buttons left no-padding>
+            <img height=47 src="assets/img/logos/pango.png">
+        </ion-buttons>
+        <ion-title>{{subTitle}}</ion-title>
+        <ion-buttons end>
+            <button ion-button>
+            <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</div>
