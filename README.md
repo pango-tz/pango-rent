@@ -80,3 +80,12 @@ You have several options for running the app.
    As a part of the build you will be prompted to provide the keystore information configured in step 1 above.
    After that the runner will build, package, and deploy the app to the emulator and launch it.
    You can have as many different emulators as you like.
+
+# Development
+## Custom Components and Providers
+
+There are custom components and providers that we have built to accomodate the development process. Below are their details and how to use them:
+
+### PlatformDetails
+
+`PlatformDetails` is a provider that is apart of the `PangoProvidersModule`.

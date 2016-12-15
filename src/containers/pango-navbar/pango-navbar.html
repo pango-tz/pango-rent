@@ -1,4 +1,4 @@
-<div *ngIf="!platform.is('mobileweb') && !platform.is('mobileDevice') && (platform.is('core') || platform.is('tablet'))">
+<div *ngIf="!platformDetails.isMobilePhoneDevice()">
     <ion-navbar color="dark">
         <img height=47 src="assets/img/logos/pango.png">
         <ion-buttons end bottom small>
@@ -25,7 +25,7 @@
         <ion-title small text-center>{{subTitle}}</ion-title>
     </ion-toolbar>
 </div>
-<div *ngIf="platform.is('mobileweb') || platform.is('mobileDevice') || (platform.is('android') && !platform.is('tablet') )|| platform.is('iphone')">
+<div *ngIf="platformDetails.isMobilePhoneDevice()">
     <ion-toolbar color="dark">
         <ion-buttons left no-padding>
             <img height=47 src="assets/img/logos/pango.png">

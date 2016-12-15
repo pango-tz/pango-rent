@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import { IonicModule } from 'ionic-angular';
+import {PangoProvidersModule} from '../providers/pango-providers.module';
 import  {PangoContainersModule} from '../containers/pango-containers.module';
 import {RentTabsPage} from './rent-tabs/rent-tabs';
 import {LandlordTabsPage} from './landlord-tabs/landlord-tabs';
@@ -68,6 +69,6 @@ import {SignupPage} from './signup/signup';
     LoginPage,
     SignupPage
   ],
-  imports: [IonicModule, PangoContainersModule]
+  imports: [IonicModule, PangoContainersModule, PangoProvidersModule]
 })
 export class PangoPagesModule {}

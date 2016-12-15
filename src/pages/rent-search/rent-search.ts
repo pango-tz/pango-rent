@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
+import { PangoUiUtils } from '../../providers/pango-ui-utils';
 /*
   Generated class for the RentSearch page.
 
@@ -13,9 +14,14 @@ import { Geolocation } from 'ionic-native';
 })
 export class RentSearchPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public pangoUiUtils: PangoUiUtils) {
+    
+
+    pangoUiUtils.showLoader();
+
     Geolocation.getCurrentPosition().then((resp) => {
       console.log(resp);
+      pangoUiUtils.hideLoader();
     }).catch((error) => {
       console.log('Error getting location', error);
     })

@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import { NavController, ModalController, Platform} from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 import { SignupPage } from '../../pages/signup/signup';
-
+import {PlatformDetails} from '../../providers/platform-details';
 @Component({
     selector: 'pango-navbar',
     templateUrl: 'pango-navbar.html'
@@ -19,7 +19,7 @@ export class PangoNavbar {
     @Output('createAlert') createAlert: EventEmitter<any> = new EventEmitter();
     @Output('filter') filter: EventEmitter<any> = new EventEmitter();
 
-    constructor (public navCtrl: NavController, private modalCtrl: ModalController, public platform: Platform) { }
+    constructor (public navCtrl: NavController, private modalCtrl: ModalController, public platformDetails: PlatformDetails) { }
 
     onBackButtonClicked() {
         this.navCtrl.pop();

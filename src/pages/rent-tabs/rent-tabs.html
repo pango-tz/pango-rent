@@ -1,10 +1,10 @@
-<ion-tabs #mainRentTabs  *ngIf="platform.is('mobileweb') || platform.is('mobileDevice') || (platform.is('android') && !platform.is('tablet') )|| platform.is('iphone')">
+<ion-tabs #mainRentTabs  *ngIf="platformDetails.isMobilePhoneDevice()">
   <ion-tab [root]="tab1Root" tabIcon="search"  ></ion-tab>
   <ion-tab [root]="tab2Root" tabIcon="alarm"></ion-tab>
   <ion-tab [root]="tab3Root" tabIcon="heart"></ion-tab>
   <ion-tab [root]="tab4Root" tabIcon="settings"></ion-tab>
 </ion-tabs>
-<ion-tabs #mainRentTabs *ngIf="!platform.is('mobileweb') && !platform.is('mobileDevice') && (platform.is('core') || platform.is('tablet'))">
+<ion-tabs #mainRentTabs *ngIf="!platformDetails.isMobilePhoneDevice()">
   <ion-tab [root]="tab1Root" tabTitle="Search" ></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Alerts"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Favorites"></ion-tab>

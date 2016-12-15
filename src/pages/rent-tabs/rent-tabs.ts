@@ -1,12 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Tabs, NavController } from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { Tabs, NavController } from 'ionic-angular';
 import { RentSearchPage } from '../rent-search/rent-search';
 import { RentAlertsPage } from '../rent-alerts/rent-alerts';
 import { RentFavoritesPage } from '../rent-favorites/rent-favorites';
 import { RentSettingsPage } from '../rent-settings/rent-settings';
+import {PlatformDetails} from '../../providers/platform-details';
  
 @Component({
   templateUrl: 'rent-tabs.html'
@@ -22,7 +20,7 @@ export class RentTabsPage {
   tab2Root: any = RentAlertsPage;
   tab3Root: any = RentFavoritesPage;
   tab4Root: any = RentSettingsPage
-  constructor(public platform: Platform, public navCtrl: NavController) {
+  constructor(public platformDetails: PlatformDetails, public navCtrl: NavController) {
     
   }
   
