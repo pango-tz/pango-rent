@@ -65,7 +65,15 @@ export class PangoHttp {
   }
 
   private getSearchParams(params: any) {
-    return new URLSearchParams(params);
+    let searchParams = new URLSearchParams();
+
+    for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+        searchParams.set(key.toString(), params[key].toString());
+      }
+    }
+    
+    return searchParams;
   }
 
   private loadRequestOptions(): Observable<RequestOptions> {

@@ -6,6 +6,7 @@ import {IonicModule} from 'ionic-angular';
 import {PangoHttp} from './pango-http';
 import {BASE_PATH} from './variables';
 import { Auth } from './auth';
+import {Properties} from './properties';
 @NgModule({
     imports: [HttpModule, IonicModule],
     providers: [
@@ -13,6 +14,7 @@ import { Auth } from './auth';
         PangoUiUtils,
         PangoHttp,
         Auth,
+        Properties,
         {provide: BASE_PATH, useValue: '/apis/v1'}
     ]
 })

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import { PangoUiUtils } from '../../providers/pango-ui-utils';
+import {Properties} from '../../providers/properties';
+
 /*
   Generated class for the RentSearch page.
 
@@ -14,13 +16,24 @@ import { PangoUiUtils } from '../../providers/pango-ui-utils';
 })
 export class RentSearchPage {
 
-  constructor(public navCtrl: NavController, public pangoUiUtils: PangoUiUtils) {
+  constructor(public navCtrl: NavController, public pangoUiUtils: PangoUiUtils, public properties: Properties) {
     
-
     pangoUiUtils.showLoader();
 
     Geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp);
+      Properties.latitude = resp.coords.latitude;
+      Properties.longitude = resp.coords.longitude;
+
+      this.properties.get({ 
+        latitude: Properties.latitude,
+        longitude: Properties.longitude,
+        propertyPupose: "Home",
+        moveInDateAsString: "2017-01-17"
+      })
+        .subscribe((properties: Properties[]) => {
+          console.log(properties);
+        })
+
       pangoUiUtils.hideLoader();
     }).catch((error) => {
       console.log('Error getting location', error);

@@ -1,15 +1,11 @@
-import { Injectable, Inject, Optional } from '@angular/core';
-import { Http } from '@angular/http';
+import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/of';
-import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
-import {Storage} from '@ionic/storage';
-import {PropertyResource} from './models/PropertyResource';
-import {Base} from './base';
-import { Headers, URLSearchParams, RequestOptions, Response }                    from '@angular/http';
-import { BASE_PATH } from './variables';
+import {PropertyResource, PropertySearchCriteria} from './models/models';
+import { Response }                    from '@angular/http';
+
+import {PangoHttp} from './pango-http';
 /*
   Generated class for the Properties provider.
 
@@ -17,19 +13,21 @@ import { BASE_PATH } from './variables';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class Properties extends Base {
+export class Properties {
 
-  constructor( public http: Http, storage: Storage, @Inject(BASE_PATH) @Optional() basePath: string) {
-    super(storage, basePath, 'properties');
+  static longitude: number;
+  static latitude: number;
+
+  constructor( private pangoHttp: PangoHttp) {
+    
   }
 
-  get(): Observable<PropertyResource> {
-    return this.http.get(this.getCallPath());
+  get(propertySearchCriteria: PropertySearchCriteria): Observable<PropertyResource[]> {
+    return this.pangoHttp.get('properties', propertySearchCriteria, false)
+      .map((response: Response) => {
+        return <PropertyResource[]> response.json()
+      });
   }
   
-  post(): Observable<Response> {
-    return this.loadRequestOptions()
-      .flatMap((requestOptions: RequestOptions) => this.http.post(this.getCallPath(), requestOptions));
-  }
   
 }
