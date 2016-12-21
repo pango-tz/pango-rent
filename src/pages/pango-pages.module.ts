@@ -17,6 +17,9 @@ import {RentFavoritesOnHoldPage} from './rent-favorites-on-hold/rent-favorites-o
 import { SplashPage } from './splash/splash';
 import {LoginPage} from './login/login';
 import {SignupPage} from './signup/signup';
+import {ReactiveFormsModule} from '@angular/forms';
+import {PangoDirectivesModule} from '../directives/pango-directives.module';
+
 @NgModule({
   declarations: [
     SplashPage,
@@ -69,6 +72,6 @@ import {SignupPage} from './signup/signup';
     LoginPage,
     SignupPage
   ],
-  imports: [IonicModule, PangoContainersModule, PangoProvidersModule]
+  imports: [IonicModule, PangoContainersModule, PangoProvidersModule, ReactiveFormsModule, PangoDirectivesModule]
 })
 export class PangoPagesModule {}

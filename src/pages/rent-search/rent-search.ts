@@ -32,9 +32,12 @@ export class RentSearchPage {
       })
         .subscribe((properties: Properties[]) => {
           console.log(properties);
+          pangoUiUtils.hideLoader();
+        }, (error) => {
+          pangoUiUtils.hideLoader();
         })
 
-      pangoUiUtils.hideLoader();
+      
     }).catch((error) => {
       console.log('Error getting location', error);
     })

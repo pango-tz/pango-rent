@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {LoadingController, Loading} from 'ionic-angular';
-import 'rxjs/add/operator/map';
+import {LoadingController, Loading, NavController, ModalController} from 'ionic-angular';
 
+import 'rxjs/add/operator/map';
 /*
   Generated class for the PangoUtils provider.
 
@@ -10,25 +10,41 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class PangoUiUtils {
-  loader: Loading
-  constructor(public loadingCtrl: LoadingController) {
-      this.createLoader();
+  public loader: Loading
+
+  constructor(public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
   }
-  
-  createLoader() {
+
+  private createLoader() {
     this.loader = this.loadingCtrl.create({
         spinner: 'dots',
-        showBackdrop: false,
-        dismissOnPageChange: true
+        showBackdrop: true
       });
+  }
+
+  presentLoginModal(navCtrl: NavController, LoginPage: any) {
+      let loginModal  = this.modalCtrl.create(LoginPage, {loginMessage: LoginPage.loginErrorMessage}, {enableBackdropDismiss: false});
+      
+      loginModal.onDidDismiss( data => {
+        
+        if (data === null) {
+          console.log(data);
+          navCtrl.parent.select(0);
+        }
+      });
+
+      loginModal.present();
   }
 
   showLoader() {
     this.hideLoader();
+    this.createLoader();
     this.loader.present();
   }
 
   hideLoader() {
-    this.loader.dismiss();
+    if (this.loader){
+      this.loader.dismiss();
+    }
   }
 }

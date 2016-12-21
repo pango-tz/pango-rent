@@ -31,19 +31,20 @@ $colors: (
   ), //#f4f4f4,
   dark: (
     base: #000,
-    contrast: #ccc
+    contrast: #fff
   )
 );
 
-$tabs-color-active: #fff;
+$tabs-color-active: color($colors, primary);
 $tabs-background: color($colors, dark, base);
+$tabs-text-color: #ddd;
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 $tabs-ios-tab-color-active: $tabs-color-active;
 $tabs-ios-background: $tabs-background;
-
+$tabs-ios-tab-text-color: $tabs-text-color;
 
 
 // App Material Design Variables
@@ -52,14 +53,14 @@ $tabs-ios-background: $tabs-background;
 
 $tabs-md-tab-color-active: $tabs-color-active;
 $tabs-md-background: $tabs-background;
-
+$tabs-md-tab-text-color: $tabs-text-color;
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
 $tabs-wp-tab-color-active: $tabs-color-active;
 $tabs-wp-background: $tabs-background;
-
+$tabs-wp-tab-text-color: $tabs-text-color;
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can

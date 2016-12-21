@@ -18,11 +18,12 @@ export class PangoNavbar {
     @Input('showSignupButton') showSignupButton: boolean = true;
     @Output('createAlert') createAlert: EventEmitter<any> = new EventEmitter();
     @Output('filter') filter: EventEmitter<any> = new EventEmitter();
+    @Output('onCancel') cancel: EventEmitter<any> = new EventEmitter(); 
 
     constructor (public navCtrl: NavController, private modalCtrl: ModalController, public platformDetails: PlatformDetails) { }
 
     onBackButtonClicked() {
-        this.navCtrl.pop();
+        this.cancel.emit(null);
     }
 
     emitCreateAlert() {

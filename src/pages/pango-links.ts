@@ -14,19 +14,19 @@ import { SplashPage } from './splash/splash';
 import {LoginPage} from './login/login';
 import {SignupPage} from './signup/signup';
 export const pangoLinks: Array<any> = [
-    { component: SplashPage, segment: 'home', name: 'Splash Page' },
     { component: RentTabsPage, segment: 'rent', name: 'Rent' },
     { component: LandlordTabsPage, segment: 'landlord', name: 'Landlord' },
-    { component: RentAlertsPage, segment: 'alerts', name: 'Rent Alerts' },
-    { component: RentSearchPage, segment: 'search', name: '' },
-    { component: RentSettingsPage, segment: 'settings', name: 'Rent Settings' },
-    { component: RentFavoritesPage, segment: 'favorites', name: 'Rent Favorites' },
-    { component: RentFavoritesContactedPage, segment: 'contacted', name: 'Rent Favorites Contacted' },
-    { component: RentFavoritesSavedPage, segment: 'saved', name: 'Rent Favorites Saved' },
-    { component: RentFavoritesOnHoldPage, segment: 'on-hold', name: 'Rent Favorites On Hold' },
+    { component: RentAlertsPage, segment: '', name: 'RentAlerts' },
+    { component: RentSearchPage, segment: '', name: 'RentSearch' },
+    { component: RentSettingsPage, segment: '', name: 'RentSettings' },
+    { component: RentFavoritesPage, segment: '', name: 'RentFavorites' },
+    { component: RentFavoritesContactedPage, segment: '', name: 'RentFavoritesContacted' },
+    { component: RentFavoritesSavedPage, segment: '', name: 'Rent Favorites Saved' },
+    { component: RentFavoritesOnHoldPage, segment: '', name: 'Rent Favorites On Hold' },
     { component: LandlordSettingsPage, segment: 'settings', name: 'Landlord Settings' },
     { component: LandlordManagePage, segment: 'manage', name: 'Landlord Settings' },
     { component: LandlordHomePage, segment: 'home', name: 'Landlord Home' },
     { component: LoginPage, segment: 'login', name: 'Login' },
-    { component: SignupPage, segment: 'signup', name: 'Sign Up' }
+    { component: SignupPage, segment: 'signup', name: 'Sign Up' },
+    { component: SplashPage, segment: '', name: 'Splash Page' },
 ]

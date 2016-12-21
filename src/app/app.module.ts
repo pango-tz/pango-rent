@@ -10,9 +10,7 @@ import {pangoLinks} from '../pages/pango-links';
     PangoRentApp
   ],
   imports: [
-    IonicModule.forRoot(PangoRentApp, {}, {
-      links: pangoLinks
-    }),
+    IonicModule.forRoot(PangoRentApp),
     HttpModule,
     PangoPagesModule
   ],
