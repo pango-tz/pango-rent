@@ -24,6 +24,8 @@ export class RentSearchPage {
       Properties.latitude = resp.coords.latitude;
       Properties.longitude = resp.coords.longitude;
 
+      console.log('Location', resp);
+      
       this.properties.get({ 
         latitude: Properties.latitude,
         longitude: Properties.longitude,
