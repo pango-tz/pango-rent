@@ -7,6 +7,7 @@ import {IonicModule} from 'ionic-angular';
 import {PangoHttp} from './pango-http';
 import {BASE_PATH} from './variables';
 import { Auth } from './auth';
+import { Registration } from './registration';
 import {Properties} from './properties';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -36,6 +37,7 @@ export function getAuthHttp(http) {
         PangoHttp,
         Auth,
         Properties,
+        Registration,
         {provide: BASE_PATH, useValue: '/apis/v1'},
         {
             provide: AuthHttp,

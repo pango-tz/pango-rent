@@ -8,7 +8,40 @@
   <pango-modal-navbar subTitle="Sign up" backButtonText="Cancel" ></pango-modal-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row center *ngIf="fatalErrorMessage" color="danger">
+      <ion-col pangoError>
+        {{fatalErrorMessage}}
+      </ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col>
+        <form novalidate (ngSubmit)="doSignup(signupForm)" [formGroup]="signupForm">
+          <ion-item>
+            <ion-input pangoFirstName placeholder="First Name" type="text" formControlName="firstName"></ion-input>
+          </ion-item>
+          <p *ngIf="formErrors.firstName" small pangoError>{{formErrors.firstName}}</p>
+          <ion-item>
+            <ion-input pangoLastName placeholder="Last Name" type="text" formControlName="lastName"></ion-input>
+          </ion-item>
+          <p *ngIf="formErrors.lastName" small pangoError>{{formErrors.lastName}}</p>
+          <ion-item>
+            <ion-input pangoPhoneNumber placeholder="Phone Number" type="text" formControlName="phoneNumber"></ion-input>
+          </ion-item>
+          <p *ngIf="formErrors.phoneNumber" small pangoError>{{formErrors.phoneNumber}}</p>
+          <ion-item>
+            <p>Your E-mail address will be your Pango user name.</p>
+            <ion-input pangoPhoneNumber placeholder="E-mail Address" type="text" formControlName="emailAddress"></ion-input>
+          </ion-item>
+          <p *ngIf="formErrors.emailAddress" small pangoError>{{formErrors.emailAddress}}</p>
+          <ion-item>
+            <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <p *ngIf="formErrors.password" small pangoError>{{formErrors.password}}</p>
+          <button [disabled]="signupForm.invalid" ion-button type="submit" block>Sign UP</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

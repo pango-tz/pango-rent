@@ -1,5 +1,13 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, Inject, OnInit } from '@angular/core';
+import { NavController, ViewController, NavParams } from 'ionic-angular';
+
+
+import {Auth} from '../../providers/auth';
+import { UserResource, LoginResponse} from '../../providers/models/models';
+import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
+import {PangoValidators} from '../../validators/pango-validator';
+import {PangoUiUtils} from '../../providers/pango-ui-utils';
+import {Error} from '../../providers/models/Error';
 
 /*
   Generated class for the Signup page.
