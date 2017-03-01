@@ -1,52 +1,62 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Geolocation } from 'ionic-native';
-import { PangoUiUtils } from '../../providers/pango-ui-utils';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {Geolocation} from 'ionic-native';
+import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {Properties} from '../../providers/properties';
+import {RegistrationService} from "../../providers/registration";
 
-/*
-  Generated class for the RentSearch page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-rent-search',
   templateUrl: 'rent-search.html'
 })
 export class RentSearchPage {
+  currentLocation: string = '';
+  registrationDate: string = '';
 
-  constructor(public navCtrl: NavController, public pangoUiUtils: PangoUiUtils, public properties: Properties) {
-    
-    pangoUiUtils.showLoader();
+  constructor(public navCtrl: NavController,
+              public pangoUiUtils: PangoUiUtils,
+              public properties: Properties,
+              public registrationService: RegistrationService,) {
+  }
+
+  getCurrentLocation() {
+
+    this.pangoUiUtils.showLoader();
 
     Geolocation.getCurrentPosition().then((resp) => {
       Properties.latitude = resp.coords.latitude;
       Properties.longitude = resp.coords.longitude;
 
       console.log('Location', resp);
-      
-      this.properties.get({ 
+
+      this.properties.get({
         latitude: Properties.latitude,
         longitude: Properties.longitude,
-        propertyPupose: "Home",
+        propertyPurpose: "Home",
         moveInDateAsString: "2017-01-17"
       })
         .subscribe((properties: Properties[]) => {
           console.log(properties);
-          pangoUiUtils.hideLoader();
+          this.pangoUiUtils.hideLoader();
+          this.currentLocation = `Lat: ${Properties.latitude}  Lon: ${Properties.longitude}`
         }, (error) => {
-          pangoUiUtils.hideLoader();
+          this.pangoUiUtils.hideLoader();
         })
 
-      
     }).catch((error) => {
       console.log('Error getting location', error);
     })
   }
 
+  getRegistrationDate() {
+    this.registrationService.getRegistrationDate().subscribe((date: string) => {
 
+      this.registrationDate = date;
 
+    }, (error: Error) => {
+      this.registrationDate = 'There was a problem retrieving your registration date.'
+    });
+  }
 
   ionViewDidLoad() {
     console.log('Hello RentSearchPage Page');
@@ -55,7 +65,7 @@ export class RentSearchPage {
   createAlert(event: any) {
     console.log("we got a create alert event");
   }
-  
+
   filter(event: any) {
     console.log("we got a filter event");
   }

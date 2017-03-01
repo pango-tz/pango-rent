@@ -6,14 +6,14 @@ import {PangoUiUtils} from './pango-ui-utils';
 import {IonicModule} from 'ionic-angular';
 import {PangoHttp} from './pango-http';
 import {BASE_PATH} from './variables';
-import { Auth } from './auth';
-import { Registration } from './registration';
+import {Auth} from './auth';
+import {RegistrationService} from './registration';
 import {Properties} from './properties';
 
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { Http } from '@angular/http';
-import { Storage } from '@ionic/storage';
-import {STORAGE_GLOBALS} from '../providers/constants';
+import {AuthHttp, AuthConfig} from 'angular2-jwt';
+import {Http} from '@angular/http';
+import {Storage} from '@ionic/storage';
+import {STORAGE_GLOBALS} from './constants';
 
 let storage = new Storage();
 
@@ -23,27 +23,28 @@ export function getAuthHttp(http) {
     tokenName: STORAGE_GLOBALS.USER_TOKEN,
     headerPrefix: '',
     noJwtError: true,
-    globalHeaders: [{'Accept': 'application/json'},{'Content-Type': 'application/json'}],
+    globalHeaders: [{'Accept': 'application/json'}, {'Content-Type': 'application/json'}],
     tokenGetter: (() => storage.get(STORAGE_GLOBALS.USER_TOKEN)),
   }), http);
 }
 
 
 @NgModule({
-    imports: [HttpModule, IonicModule, FormsModule],
-    providers: [
-        PlatformDetails,
-        PangoUiUtils,
-        PangoHttp,
-        Auth,
-        Properties,
-        Registration,
-        {provide: BASE_PATH, useValue: '/apis/v1'},
-        {
-            provide: AuthHttp,
-            useFactory: getAuthHttp,
-            deps: [Http]
-        },
-    ]
+  imports: [HttpModule, IonicModule, FormsModule],
+  providers: [
+    PlatformDetails,
+    PangoUiUtils,
+    PangoHttp,
+    Auth,
+    Properties,
+    RegistrationService,
+    {provide: BASE_PATH, useValue: '/apis/v1'},
+    {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    },
+  ]
 })
-export class PangoProvidersModule {}
+export class PangoProvidersModule {
+}

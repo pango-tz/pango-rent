@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import { IonicModule } from 'ionic-angular';
+import {IonicModule} from 'ionic-angular';
 import {PangoProvidersModule} from '../providers/pango-providers.module';
 import  {PangoContainersModule} from '../containers/pango-containers.module';
 import {RentTabsPage} from './rent-tabs/rent-tabs';
@@ -8,17 +8,18 @@ import {RentSearchPage} from './rent-search/rent-search';
 import {RentSettingsPage} from './rent-settings/rent-settings';
 import {RentAlertsPage} from './rent-alerts/rent-alerts';
 import {RentFavoritesPage} from './rent-favorites/rent-favorites';
-import{ LandlordHomePage } from './landlord-home/landlord-home';
-import{ LandlordSettingsPage } from './landlord-settings/landlord-settings';
-import{ LandlordManagePage } from './landlord-manage/landlord-manage';
+import{LandlordHomePage} from './landlord-home/landlord-home';
+import{LandlordSettingsPage} from './landlord-settings/landlord-settings';
+import{LandlordManagePage} from './landlord-manage/landlord-manage';
 import {RentFavoritesContactedPage} from './rent-favorites-contacted/rent-favorites-contacted';
 import {RentFavoritesSavedPage} from './rent-favorites-saved/rent-favorites-saved';
 import {RentFavoritesOnHoldPage} from './rent-favorites-on-hold/rent-favorites-on-hold';
-import { SplashPage } from './splash/splash';
+import {SplashPage} from './splash/splash';
 import {LoginPage} from './login/login';
 import {SignupPage} from './signup/signup';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PangoDirectivesModule} from '../directives/pango-directives.module';
+import {SignupCompletePage} from "./signup-complete/signup-complete";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {PangoDirectivesModule} from '../directives/pango-directives.module';
     RentFavoritesSavedPage,
     RentFavoritesContactedPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    SignupCompletePage
   ],
   entryComponents: [
     SplashPage,
@@ -53,7 +55,8 @@ import {PangoDirectivesModule} from '../directives/pango-directives.module';
     RentFavoritesSavedPage,
     RentFavoritesContactedPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    SignupCompletePage
   ],
   exports: [
     SplashPage,
@@ -70,8 +73,10 @@ import {PangoDirectivesModule} from '../directives/pango-directives.module';
     RentFavoritesSavedPage,
     RentFavoritesContactedPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    SignupCompletePage
   ],
   imports: [IonicModule, PangoContainersModule, PangoProvidersModule, ReactiveFormsModule, PangoDirectivesModule]
 })
-export class PangoPagesModule {}
+export class PangoPagesModule {
+}

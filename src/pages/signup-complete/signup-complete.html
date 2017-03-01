@@ -1,0 +1,15 @@
+<ion-header no-border>
+  <pango-navbar (createAlert)="createAlert($event)" (filter)="filter($event)"></pango-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <div class="full-center">
+      Thank you for signing up with Pango!
+      <br/>
+      Please check your e-mail and confirm your registration.
+    </div>
+    <div class="full-center margin-1">
+      <button ion-button (click)="searchPropertiesClicked()" class="width-50">Search Properties</button>
+    </div>
+  </ion-item>
+</ion-content>
