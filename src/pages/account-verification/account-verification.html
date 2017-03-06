@@ -1,0 +1,17 @@
+<ion-header no-border>
+  <create-account-navbar></create-account-navbar>
+</ion-header>
+<ion-content padding>
+  <div>&nbsp;</div>
+  <div class="full-center">
+    <div *ngIf="verified === 'inprogress'" class="inprogress">{{verificationMessage}}</div>
+    <div *ngIf="verified === 'verified'" class="verified">{{verificationMessage}}</div>
+    <div *ngIf="verified === 'failed'" class="failed">{{verificationMessage}}</div>
+  </div>
+  <div class="full-center margin-1">
+    <button ion-button (click)="searchPropertiesClicked()" class="width-50">Search Properties</button>
+  </div>
+  <div class="full-center margin-1">
+    <button ion-button (click)="signIn()" class="width-50">Log In</button>
+  </div>
+</ion-content>

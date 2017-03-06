@@ -8,8 +8,8 @@
             <button *ngIf="showFilterButton" (click) = "emitFilter()" text-capitalize ion-button small>
                 Filter
             </button>
-            <button *ngIf="showLoginButton" (click) = "navLogin()" text-capitalize ion-button small>
-                Login
+            <button *ngIf="showSigninButton" (click) = "navSignin()" text-capitalize ion-button small>
+                Sign In
             </button>
             <button *ngIf="showSignupButton" (click) = "navSignup()" text-capitalize ion-button small>
                 Sign Up
@@ -32,8 +32,15 @@
         </ion-buttons>
         <ion-title>{{subTitle}}</ion-title>
         <ion-buttons end>
-            <button ion-button>
-            <ion-icon name="more"></ion-icon>
+          <!-- TODO: Not sure how to make the elipsis/more button work. -->
+            <!--<button ion-button>-->
+              <!--<ion-icon name="more"></ion-icon>-->
+            <!--</button>-->
+            <button *ngIf="showSigninButton" (click) = "navSignin()" text-capitalize ion-button small>
+              Sign In
+            </button>
+            <button *ngIf="showSignupButton" (click) = "navSignup()" text-capitalize ion-button small>
+              Sign Up
             </button>
         </ion-buttons>
     </ion-toolbar>

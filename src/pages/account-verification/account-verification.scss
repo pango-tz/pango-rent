@@ -1,0 +1,32 @@
+page-account-verification {
+  .full-center {
+    text-align: center;
+    word-wrap: normal;
+    width: 100%;
+  }
+  .width-50 {
+    width: 50%;
+  }
+  .margin-1 {
+    margin-top: 1em;
+  }
+  .heading {
+    font-weight: bold;
+    font-size: larger;
+  }
+  .verified {
+    border: 1px solid #008000;
+    color: #008000;
+    padding: 1em;
+  }
+  .failed {
+    border: 1px solid #FF0000;
+    color: #FF0000;
+    padding: 1em;
+  }
+  .inprogress {
+    border: 1px solid #1E90FF;
+    color: #1E90FF;
+    padding: 1em;
+  }
+}

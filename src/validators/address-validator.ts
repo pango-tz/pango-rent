@@ -21,8 +21,8 @@ export function addressValidator(control: AbstractControl): {[key: string]: any}
   console.assert(ctrlZip != null, 'ctrlZip is null');
   console.assert(ctrlCountry != null, 'ctrlCountry is null');
 
-  if ((ctrlAddressLine1.value || ctrlAddressLine2.value || ctrlCity.value || ctrlState.value || ctrlZip.value || ctrlCountry.value) &&
-    (!ctrlAddressLine1.value || !ctrlAddressLine2.value || !ctrlCity.value || !ctrlState.value || !ctrlZip.value || !ctrlCountry.value)) {
+  if ((ctrlAddressLine1.value || ctrlCity.value || ctrlState.value || ctrlZip.value || ctrlCountry.value) &&
+    (!ctrlAddressLine1.value || !ctrlCity.value || !ctrlState.value || !ctrlZip.value || !ctrlCountry.value)) {
     return {'addressIncomplete': control}
   }
 

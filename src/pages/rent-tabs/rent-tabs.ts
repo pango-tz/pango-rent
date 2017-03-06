@@ -5,7 +5,7 @@ import { RentAlertsPage } from '../rent-alerts/rent-alerts';
 import { RentFavoritesPage } from '../rent-favorites/rent-favorites';
 import { RentSettingsPage } from '../rent-settings/rent-settings';
 import {PlatformDetails} from '../../providers/platform-details';
- 
+
 @Component({
   templateUrl: 'rent-tabs.html'
 })
@@ -19,11 +19,11 @@ export class RentTabsPage {
   tab1Root: any = RentSearchPage;
   tab2Root: any = RentAlertsPage;
   tab3Root: any = RentFavoritesPage;
-  tab4Root: any = RentSettingsPage
+  tab4Root: any = RentSettingsPage;
   constructor(public platformDetails: PlatformDetails, public navCtrl: NavController) {
-    
+
   }
-  
+
 
   ionViewDidLoad() {
     this.mainRentTabs.ionChange.subscribe((something, error) => {

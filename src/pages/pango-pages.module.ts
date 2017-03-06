@@ -20,9 +20,11 @@ import {SignupPage} from './signup/signup';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PangoDirectivesModule} from '../directives/pango-directives.module';
 import {SignupCompletePage} from "./signup-complete/signup-complete";
+import {AccountVerificationPage} from "./account-verification/account-verification";
 
 @NgModule({
   declarations: [
+    AccountVerificationPage,
     SplashPage,
     RentTabsPage,
     LandlordTabsPage,
@@ -41,6 +43,7 @@ import {SignupCompletePage} from "./signup-complete/signup-complete";
     SignupCompletePage
   ],
   entryComponents: [
+    AccountVerificationPage,
     SplashPage,
     RentTabsPage,
     LandlordTabsPage,
@@ -59,6 +62,7 @@ import {SignupCompletePage} from "./signup-complete/signup-complete";
     SignupCompletePage
   ],
   exports: [
+    AccountVerificationPage,
     SplashPage,
     RentTabsPage,
     LandlordTabsPage,

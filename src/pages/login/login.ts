@@ -31,20 +31,25 @@ export class LoginPage implements OnInit{
     userName: '',
     password: ''
   };
-  
+
   validationMessages = {
-    'userName': { 
+    'userName': {
       required: 'Email is required.',
       improperEmail: 'Must be a valid email.'
     },
-    'password': { 
+    'password': {
       required: 'Password is required.',
       minlength: 'Password must be at least 6 characters long.'
     }
   };
 
-  constructor(public navCtrl: NavController, public auth: Auth, @Inject(FormBuilder)private formBuilder: FormBuilder, private uiUtils: PangoUiUtils, public viewCtrl: ViewController, params: NavParams) {
-    
+  constructor(public navCtrl: NavController,
+              public auth: Auth,
+              @Inject(FormBuilder)private formBuilder: FormBuilder,
+              private uiUtils: PangoUiUtils,
+              public viewCtrl: ViewController,
+              params: NavParams) {
+
     this.fatalErrorMessage = params.get('loginErrorMessage');
 
   }
@@ -85,7 +90,7 @@ export class LoginPage implements OnInit{
   clearFieldErrors(field: string) {
     this.formErrors[field] = '';
   }
-  
+
   dismiss(data: any) {
     this.viewCtrl.dismiss(data);
   }
@@ -115,9 +120,9 @@ export class LoginPage implements OnInit{
         });
     }
   }
-  
+
   ionViewDidLoad() {
-    
+
   }
 
 }

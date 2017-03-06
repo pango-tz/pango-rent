@@ -38,7 +38,7 @@ export function getAuthHttp(http) {
     Auth,
     Properties,
     RegistrationService,
-    {provide: BASE_PATH, useValue: '/apis/v1'},
+    {provide: BASE_PATH, useValue: 'http://dev.pango-apis.com/apis/v1'},
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,

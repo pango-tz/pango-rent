@@ -17,7 +17,7 @@ import 'rxjs/add/observable/of';
   for more info on providers and Angular 2 DI.
 */
 export interface HeaderReference {
-    userToken: string; 
+    userToken: string;
     userReferenceId: string;
 }
 
@@ -28,7 +28,7 @@ export class PangoHttp {
   private userReferenceId: string;
 
   constructor(private storage: Storage, private http: Http, @Inject(BASE_PATH) @Optional() private basePath: string) {
-    
+
   }
 
   private getPath(path: string) {
@@ -40,7 +40,7 @@ export class PangoHttp {
       .flatMap((requestOptions: RequestOptions) => {
         return this.http.post(this.getPath(path), body, requestOptions);
       });
-    
+
   }
 
   public get(path: string, searchParams: any = null, isProtected: boolean = true): Observable<Response> {
@@ -72,7 +72,7 @@ export class PangoHttp {
         searchParams.set(key.toString(), params[key].toString());
       }
     }
-    
+
     return searchParams;
   }
 

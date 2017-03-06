@@ -58,21 +58,7 @@
     "tslint": "^4.0.0",
     "typescript": "~2.0.10"
   },
-  "cordovaPlugins": [
-    "cordova-plugin-whitelist",
-    "cordova-plugin-console",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-device",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-splashscreen"
-  ],
-  "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    }
-  ],
+  "cordovaPlugins": [],
+  "cordovaPlatforms": [],
   "description": "pango-rent: An Ionic project"
 }
