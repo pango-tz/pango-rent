@@ -9,11 +9,29 @@
   <ion-item *ngIf="currentLocation">
     <div>{{currentLocation}}</div>
   </ion-item>
-  <br/>
-  <ion-item>
-    <button ion-button (click)="getRegistrationDate()" block>Get registration date</button>
-  </ion-item>
-  <ion-item *ngIf="registrationDate">
-    <div>{{registrationDate}}</div>
-  </ion-item>
+  <form novalidate (ngSubmit)="sendConfirmTokenToAccountConfirmation(confirmAccountForm)" [formGroup]="confirmAccountForm">
+    <ion-item>
+      <ion-input placeholder="Token" type="text" formControlName="confirmToken"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Verify Token</button>
+  </form>
+
+  <!--This was just helper stuff for development that allowed me to get to pages without performing operations.-->
+  <!--<br/>-->
+  <!--<ion-item>-->
+    <!--<button ion-button (click)="getRegistrationDate()">Get registration date</button>-->
+    <!--<button ion-button (click)="deleteRegistrationDate()">Delete registration date</button>-->
+  <!--</ion-item>-->
+  <!--<ion-item *ngIf="registrationDate">-->
+    <!--<div>{{registrationDate}}</div>-->
+  <!--</ion-item>-->
+  <!--<form novalidate (ngSubmit)="saveEmailAddress(emailAddressForm)" [formGroup]="emailAddressForm">-->
+    <!--<ion-item>-->
+      <!--<ion-input placeholder="Email Address" type="text" formControlName="emailAddress"></ion-input>-->
+    <!--</ion-item>-->
+    <!--<button ion-button type="submit" block>Save Email To Storage</button>-->
+  <!--</form>-->
+  <!--<div><a href="#" (click)="loadThanksForSigningUpPage()">loadThanksForSigningUpPage</a></div>-->
+  <!--<div>&nbsp;</div>-->
+  <!--<div>apiBasePath: {{apiBasePath}}</div>-->
 </ion-content>

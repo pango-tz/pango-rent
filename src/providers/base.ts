@@ -1,4 +1,4 @@
-import { Http, Headers, RequestOptions }                    from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import {STORAGE_GLOBALS} from './constants';
 import {Storage} from '@ionic/storage';
 import {Observable} from 'rxjs/Observable';
@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/fromPromise';
 
 export interface HeaderReference {
-    userToken: string; 
+    userToken: string;
     userReferenceId: string;
 }
 
@@ -14,20 +14,20 @@ export abstract class Base {
 
 
     constructor(private storage: Storage, private basePath: string,  private path: string) { }
-    
+
     protected getCallPath() {
         return `${this.basePath}/${this.path}`;
     }
 
     protected loadRequestOptions(): Observable<RequestOptions> {
-        
+
         return Observable.fromPromise(
                 this.loadUserToken()
                 .then(this.loadUserReferenceIdAfterLoadUserToken)
                 .then(this.setHeaders)
                 .then(this.setRequestOptions)
             );
-        
+
     }
 
     private setRequestOptions(headers: Headers) {
@@ -37,7 +37,7 @@ export abstract class Base {
     }
 
     private setHeaders(headerReference: HeaderReference): Promise<Headers> {
-        
+
         return new Promise<Headers>((resolve, reject) => {
             let userToken = headerReference.userToken;
             let userReferenceId = headerReference.userReferenceId;

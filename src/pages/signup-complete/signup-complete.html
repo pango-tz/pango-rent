@@ -1,15 +1,21 @@
 <ion-header no-border>
-  <pango-navbar (createAlert)="createAlert($event)" (filter)="filter($event)"></pango-navbar>
+  <create-account-navbar></create-account-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-item>
     <div class="full-center">
-      Thank you for signing up with Pango!
-      <br/>
-      Please check your e-mail and confirm your registration.
+      <div class="heading">Thank you for registering!</div>
+      <div>&nbsp;</div>
+      <div>You have just been sent a verification email to:</div>
+      <div>&nbsp;</div>
+      <div>{{emailAddress}}</div>
+      <div>&nbsp;</div>
+      <div>Please click on the verify link in that email to complete your registration.</div>
+      <div>&nbsp;</div>
+      <div>
+        <a>Didn't receive it?  Send it again.</a>
+      </div>
     </div>
     <div class="full-center margin-1">
       <button ion-button (click)="searchPropertiesClicked()" class="width-50">Search Properties</button>
     </div>
-  </ion-item>
 </ion-content>

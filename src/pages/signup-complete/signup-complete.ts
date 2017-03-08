@@ -1,28 +1,39 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {RentSearchPage} from "../rent-search/rent-search";
+import {RegistrationService} from "../../providers/registration";
 
-/*
-  Generated class for the SignupComplete page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-signup-complete',
   templateUrl: 'signup-complete.html'
 })
 export class SignupCompletePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  emailAddress: string;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupCompletePage');
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public registrationService: RegistrationService) {
+
+    // Retrieve the email address from local storage.
+    registrationService.getUserEmailAddress().subscribe((emailAddress: string) => {
+
+      if (emailAddress) {
+        // Mask the email address.
+        let numXes = (emailAddress.indexOf('@') - 3);
+        this.emailAddress = emailAddress.substring(numXes, emailAddress.length);
+        this.emailAddress = "x".repeat(numXes) + this.emailAddress;
+      } else {
+        this.emailAddress = 'Your email address could not be found.';
+      }
+
+    }, (error: Error) => {
+      this.emailAddress = 'Your email address could not be found.';
+    });
   }
-
 
   searchPropertiesClicked() {
     this.navCtrl.setRoot(RentSearchPage);
   }
-
 }

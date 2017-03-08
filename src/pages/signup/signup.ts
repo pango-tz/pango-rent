@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {NavController, NavParams, Content} from 'ionic-angular';
+import {NavController, NavParams, Content, ViewController} from 'ionic-angular';
 import {PlatformDetails} from '../../providers/platform-details';
 import {UserResource} from '../../providers/models/models';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
@@ -51,11 +51,11 @@ export class SignupPage implements OnInit {
   validationMessages = {
     'firstName': {
       required: 'First Name is required.',
-      minlength: 'Password must be at least 1 character.',
+      minlength: 'First Name must be at least 1 character.',
     },
     'lastName': {
-      required: 'Last Name is required.',
-      minlength: 'Password must be at least 2 characters.',
+      required: 'Surname is required.',
+      minlength: 'Surname must be at least 2 characters.',
     },
     'phoneNumber': {
       pattern: 'Phone number should contain only numbers.'
@@ -82,6 +82,7 @@ export class SignupPage implements OnInit {
               public platformDetails: PlatformDetails,
               public pangoUiUtils: PangoUiUtils,
               public registrationService: RegistrationService,
+              public viewCtrl: ViewController,
               @Inject(FormBuilder) private formBuilder: FormBuilder) {
   }
 
@@ -224,6 +225,7 @@ export class SignupPage implements OnInit {
             this.fatalErrorMessage = 'That e-mail is already registered.';
           } else {
             this.fatalErrorMessage = 'A problem has occurred.  Please try again.';
+            this.fatalErrorMessage = JSON.stringify(error.errors);
           }
 
           this.pangoUiUtils.hideLoader();
@@ -233,5 +235,12 @@ export class SignupPage implements OnInit {
       this.fatalErrorMessage = 'Please complete all the required fields.';
       this.content.scrollToTop();
     }
+  }
+
+  dismiss(data: any) {
+    this.viewCtrl.dismiss(data);
+  }
+  onDismiss($event) {
+    this.dismiss(null);
   }
 }

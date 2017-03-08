@@ -1,8 +1,8 @@
 <ion-header no-border>
-  <pango-modal-navbar subTitle="Sign Up"></pango-modal-navbar>
+  <create-account-navbar></create-account-navbar>
 </ion-header>
 <ion-content padding delegate-handle="content">
-  <ion-grid class="thin-border">
+  <ion-grid>
     <ion-row center *ngIf="fatalErrorMessage" color="danger">
       <ion-col pangoError>
         <div id="fatalErrorMessageDisplay">{{fatalErrorMessage}}</div>
@@ -13,12 +13,9 @@
         <form novalidate (ngSubmit)="doSignup(registrationForm)" [formGroup]="registrationForm">
           <ion-item>
             <ion-input placeholder="First Name *" type="text" formControlName="firstName"></ion-input>
+            <ion-input placeholder="Surname *" type="text" formControlName="lastName"></ion-input>
           </ion-item>
           <p *ngIf="formErrors.firstName" small pangoError>{{formErrors.firstName}}</p>
-
-          <ion-item>
-            <ion-input placeholder="Last Name *" type="text" formControlName="lastName"></ion-input>
-          </ion-item>
           <p *ngIf="formErrors.lastName" small pangoError>{{formErrors.lastName}}</p>
 
           <ion-item>
@@ -28,42 +25,34 @@
           <p *ngIf="formErrors.emailAddress" small pangoError>{{formErrors.emailAddress}}</p>
 
           <ion-item>
+            <ion-input placeholder="Phone Number" type="text" formControlName="phoneNumber"></ion-input>
+          </ion-item>
+          <p *ngIf="formErrors.phoneNumber" small pangoError>{{formErrors.phoneNumber}}</p>
+
+          <ion-item>
             <ion-input placeholder="Password *" type="password" formControlName="password"></ion-input>
           </ion-item>
           <p *ngIf="formErrors.password" small pangoError>{{formErrors.password}}</p>
 
           <ion-item>
-            <ion-input pangoConfirmPassword compareTo="password" placeholder="Confirm Password *" type="password"
+            <ion-input pangoConfirmPassword compareTo="password" placeholder="Retype Password *" type="password"
                        formControlName="confirmPassword"></ion-input>
           </ion-item>
           <p *ngIf="formErrors.confirmPassword" small pangoError>{{formErrors.confirmPassword}}</p>
 
-          <ion-item>
-            <div class="full-center">Tell us more to take full advantage of Pango.<br/>You can also do this later.</div>
-          </ion-item>
-
-          <ion-item>
-            <ion-input placeholder="Phone Number" type="text" formControlName="phoneNumber"></ion-input>
-          </ion-item>
-          <p *ngIf="formErrors.phoneNumber" small pangoError>{{formErrors.phoneNumber}}</p>
-
           <div formGroupName="address">
             <p *ngIf="formErrors.address" small pangoError>{{formErrors.address}}</p>
             <ion-item>
-              <ion-input placeholder="Address Line 1" type="text" formControlName="addressLine1"></ion-input>
+              <ion-input placeholder="Premise + Street Address" type="text" formControlName="addressLine1"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input pangoAddress placeholder="Address Line 2" type="text"
+              <ion-input pangoAddress placeholder="Apt. Number" type="text"
                          formControlName="addressLine2"></ion-input>
+              <ion-input pangoAddress placeholder="Postcode" type="text" formControlName="zip"></ion-input>
             </ion-item>
             <ion-item>
+              <ion-input pangoAddress placeholder="Locality" type="text" formControlName="state"></ion-input>
               <ion-input pangoAddress placeholder="City" type="text" formControlName="city"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input pangoAddress placeholder="State" type="text" formControlName="state"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input pangoAddress placeholder="Zip Code" type="text" formControlName="zip"></ion-input>
             </ion-item>
             <ion-item>
               <ion-input pangoAddress placeholder="Country" type="text" formControlName="country"></ion-input>

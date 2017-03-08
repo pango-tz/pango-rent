@@ -1,20 +1,25 @@
 import {NgModule} from '@angular/core';
 import  {PangoNavbar} from './pango-navbar/pango-navbar.component';
 import  {PangoModalNavbar} from './pango-modal-navbar/pango-modal-navbar.component';
-import { IonicModule } from 'ionic-angular';
+import  {CreateAccountNavbar} from './create-account-navbar/create-account-navbar.component';
+import {IonicModule} from 'ionic-angular';
 @NgModule({
   declarations: [
     PangoNavbar,
-    PangoModalNavbar
+    PangoModalNavbar,
+    CreateAccountNavbar
   ],
   entryComponents: [
     PangoNavbar,
-    PangoModalNavbar
+    PangoModalNavbar,
+    CreateAccountNavbar
   ],
   exports: [
-      PangoNavbar,
-    PangoModalNavbar
+    PangoNavbar,
+    PangoModalNavbar,
+    CreateAccountNavbar
   ],
   imports: [IonicModule]
 })
-export class PangoContainersModule {}
+export class PangoContainersModule {
+}

@@ -13,6 +13,8 @@ import{ LandlordManagePage } from './landlord-manage/landlord-manage';
 import { SplashPage } from './splash/splash';
 import {LoginPage} from './login/login';
 import {SignupPage} from './signup/signup';
+import {SignupCompletePage} from './signup-complete/signup-complete';
+import {AccountVerificationPage} from "./account-verification/account-verification";
 export const pangoLinks: Array<any> = [
     { component: RentTabsPage, segment: 'rent', name: 'Rent' },
     { component: LandlordTabsPage, segment: 'landlord', name: 'Landlord' },
@@ -29,4 +31,6 @@ export const pangoLinks: Array<any> = [
     { component: LoginPage, segment: 'login', name: 'Login' },
     { component: SignupPage, segment: 'signup', name: 'Sign Up' },
     { component: SplashPage, segment: '', name: 'Splash Page' },
-]
+    { component: SignupCompletePage, segment: 'signupComplete', name: 'Sign Up Complete' },
+    { component: AccountVerificationPage, segment: 'accountVerification', name: 'Account Verification' }
+];

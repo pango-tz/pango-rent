@@ -1,9 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
 import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {Properties} from '../../providers/properties';
 import {RegistrationService} from "../../providers/registration";
+import {SignupCompletePage} from "../signup-complete/signup-complete";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {ConfirmAccountResource} from "../../providers/models/models";
+import {UserResource} from "../../providers/models/models";
+import {AccountVerificationPage} from "../account-verification/account-verification";
+import {BASE_PATH} from '../../providers/variables';
 
 @Component({
   selector: 'page-rent-search',
@@ -12,11 +18,16 @@ import {RegistrationService} from "../../providers/registration";
 export class RentSearchPage {
   currentLocation: string = '';
   registrationDate: string = '';
+  // apiBasePath: string = '';
 
   constructor(public navCtrl: NavController,
               public pangoUiUtils: PangoUiUtils,
               public properties: Properties,
-              public registrationService: RegistrationService,) {
+              public registrationService: RegistrationService,
+              @Inject(FormBuilder) private confirmAccountFormBuilder: FormBuilder,
+              @Inject(FormBuilder) private emailAddressFormBuilder: FormBuilder,
+              @Inject(BASE_PATH) @Optional() private basePath: string) {
+    // this.apiBasePath = basePath;
   }
 
   getCurrentLocation() {
@@ -48,15 +59,25 @@ export class RentSearchPage {
     })
   }
 
-  getRegistrationDate() {
-    this.registrationService.getRegistrationDate().subscribe((date: string) => {
-
-      this.registrationDate = date;
-
-    }, (error: Error) => {
-      this.registrationDate = 'There was a problem retrieving your registration date.'
-    });
-  }
+  // getRegistrationDate() {
+  //   this.registrationService.getRegistrationDate().subscribe((date: string) => {
+  //
+  //     this.registrationDate = date;
+  //
+  //   }, (error: Error) => {
+  //     this.registrationDate = 'There was a problem retrieving your registration date.'
+  //   });
+  // }
+  //
+  // deleteRegistrationDate() {
+  //   this.registrationService.deleteRegistrationDate().subscribe((date: string) => {
+  //
+  //     this.registrationDate = date;
+  //
+  //   }, (error: Error) => {
+  //     this.registrationDate = 'There was a problem deleting your registration date.'
+  //   });
+  // }
 
   ionViewDidLoad() {
     console.log('Hello RentSearchPage Page');
@@ -69,4 +90,38 @@ export class RentSearchPage {
   filter(event: any) {
     console.log("we got a filter event");
   }
+
+  // loadThanksForSigningUpPage() {
+  //   this.navCtrl.push(SignupCompletePage);
+  // }
+
+  confirmAccountForm: FormGroup;
+  confirmAccount: ConfirmAccountResource = {
+    confirmToken: ''
+  };
+
+  // emailAddressForm: FormGroup;
+  // user: UserResource = {
+  //   emailAddress: ''
+  // };
+
+  ngOnInit() {
+    this.confirmAccountForm = this.confirmAccountFormBuilder.group({
+      // This is andrew's token.
+      confirmToken: ['58bc8cdcc9e77c0005a05226:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhcmNzaGFubm9uQGdtYWlsLmNvbSIsImF1ZGllbmNlIjoidW4tZXhwaXJpbmciLCJjcmVhdGVkIjoxNDg4NzUxODM2NTcwLCJleHAiOjE0ODg3NTU0MzZ9.DvfnmsUmFF_bzN2fuUs7CWT_P7NBLOykuCrmWDdxOwRcCw6A6aO8AWZkXcuZBTp0Ng5bP34TbHT_rgUqPRfoVw']
+    });
+    // this.emailAddressForm = this.emailAddressFormBuilder.group({
+    //   emailAddress: ['']
+    // });
+  }
+
+  sendConfirmTokenToAccountConfirmation() {
+    this.confirmAccount = this.confirmAccountForm.value;
+    this.navCtrl.push(AccountVerificationPage, {verificationToken: this.confirmAccount.confirmToken});
+  }
+
+  // saveEmailAddress() {
+  //   this.user = this.emailAddressForm.value;
+  //   this.registrationService.saveUserEmailAddress(this.user.emailAddress.trim());
+  // }
 }

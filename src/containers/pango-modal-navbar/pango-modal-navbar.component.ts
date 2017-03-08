@@ -9,11 +9,11 @@ export class PangoModalNavbar {
     @Input('subTitle') subTitle;
     @Input('backButtonText') backButtonText: string = 'Back';
     @Output('onCancel') cancel: EventEmitter<any> = new EventEmitter();
-    constructor (public navCtrl: NavController) { }
+
+    constructor (public navCtrl: NavController) {
+    }
 
     onBackButtonClicked() {
         this.cancel.emit(null);
     }
-
-
 }
