@@ -1,0 +1,26 @@
+<ion-navbar color="dark" >
+  <ion-buttons left start small>
+    <img height=47 src="assets/img/logos/pango.png">
+  </ion-buttons>
+  <ion-title text-center>{{pangoErrorResource.navBarTitle}}</ion-title>
+  <ion-buttons end bottom small>
+    <button end (click) = "closeModal()" text-capitalize ion-button small>
+      {{pangoErrorResource.navBarBackText}}
+    </button>
+  </ion-buttons>
+</ion-navbar>
+<ion-content>
+  <div text-center>
+    <img src="assets/img/alert-icon.png" id="pango-error-alert-icon">
+  </div>
+  <div text-center id="pango-error-message">{{pangoErrorResource.errorMessage}}</div>
+  <div id="pango-error-buttons" text-center>
+    <button *ngIf="pangoErrorResource.buttonOneText" (click) = "clickButtonOne()" ion-button>
+      {{pangoErrorResource.buttonOneText}}
+    </button>
+    <br/>
+    <button *ngIf="pangoErrorResource.buttonTwoText" (click) = "clickButtonTwo()" ion-button>
+      {{pangoErrorResource.buttonTwoText}}
+    </button>
+  </div>
+</ion-content>

@@ -4,6 +4,10 @@
 <ion-content padding>
 
   <ion-item>
+    <button ion-button block (click)="loadSystemErrorModal()">System Error</button>
+  </ion-item>
+
+  <ion-item>
     <button ion-button block (click)="getCurrentLocation()">Get my current location</button>
   </ion-item>
   <ion-item *ngIf="currentLocation">
@@ -18,10 +22,10 @@
 
   <!--This was just helper stuff for development that allowed me to get to pages without performing operations.-->
   <!--<br/>-->
-  <!--<ion-item>-->
-    <!--<button ion-button (click)="getRegistrationDate()">Get registration date</button>-->
-    <!--<button ion-button (click)="deleteRegistrationDate()">Delete registration date</button>-->
-  <!--</ion-item>-->
+  <ion-item>
+    <button ion-button (click)="getRegistrationDate()">Get registration date</button>
+    <button ion-button (click)="deleteRegistrationDate()">Delete registration date</button>
+  </ion-item>
   <!--<ion-item *ngIf="registrationDate">-->
     <!--<div>{{registrationDate}}</div>-->
   <!--</ion-item>-->
@@ -31,7 +35,7 @@
     <!--</ion-item>-->
     <!--<button ion-button type="submit" block>Save Email To Storage</button>-->
   <!--</form>-->
-  <!--<div><a href="#" (click)="loadThanksForSigningUpPage()">loadThanksForSigningUpPage</a></div>-->
+  <div><a href="#" (click)="loadThanksForSigningUpPage()">loadThanksForSigningUpPage</a></div>
   <!--<div>&nbsp;</div>-->
   <!--<div>apiBasePath: {{apiBasePath}}</div>-->
 </ion-content>

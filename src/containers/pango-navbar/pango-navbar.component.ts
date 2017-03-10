@@ -56,6 +56,6 @@ export class PangoNavbar {
     }
 
     navSignup(){
-      this.navCtrl.push(SignupPage);
+      this.navCtrl.setRoot(SignupPage);
     }
 }

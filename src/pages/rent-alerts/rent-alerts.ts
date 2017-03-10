@@ -3,22 +3,22 @@ import { NavController, ModalController } from 'ionic-angular';
 import {Auth} from '../../providers/auth';
 import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {LoginPage} from '../login/login';
-/*
-  Generated class for the RentAlerts page.
+import {PangoModalUtils} from "../../providers/pango-modal-utils";
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-rent-alerts',
   templateUrl: 'rent-alerts.html'
 })
 export class RentAlertsPage {
 
-  constructor(public navCtrl: NavController, private auth: Auth, private modalCtrl: ModalController, private uiUtils: PangoUiUtils) {
+  constructor(public navCtrl: NavController,
+              private auth: Auth,
+              private modalCtrl: ModalController,
+              private uiUtils: PangoUiUtils,
+  private modalUtils: PangoModalUtils) {
 
-    
-    
+
+
   }
 
   ionViewWillEnter() {
@@ -27,7 +27,7 @@ export class RentAlertsPage {
       subscribe((loggedIn: boolean) => {
         console.log("Is logged in", loggedIn);
         if (!loggedIn) {
-          this.uiUtils.presentLoginModal(this.navCtrl, LoginPage);
+          this.modalUtils.presentLoginModal(this.navCtrl);
         }
       });
   }

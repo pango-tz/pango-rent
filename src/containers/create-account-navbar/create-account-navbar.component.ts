@@ -1,5 +1,6 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import { NavController, ModalController, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
+import { NavController} from 'ionic-angular';
+import {RentSearchPage} from "../../pages/rent-search/rent-search";
 
 @Component({
   selector: 'create-account-navbar',
@@ -8,5 +9,9 @@ import { NavController, ModalController, Platform} from 'ionic-angular';
 export class CreateAccountNavbar {
 
   constructor (public navCtrl: NavController) {
+  }
+
+  cancel() {
+    this.navCtrl.setRoot(RentSearchPage)
   }
 }

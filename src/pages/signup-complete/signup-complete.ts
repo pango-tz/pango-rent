@@ -16,14 +16,10 @@ export class SignupCompletePage {
               public navParams: NavParams,
               public registrationService: RegistrationService) {
 
-    // Retrieve the email address from local storage.
+    // Retrieve the email address from local storage and mask it.
     registrationService.getUserEmailAddress().subscribe((emailAddress: string) => {
-
       if (emailAddress) {
-        // Mask the email address.
-        let numXes = (emailAddress.indexOf('@') - 3);
-        this.emailAddress = emailAddress.substring(numXes, emailAddress.length);
-        this.emailAddress = "x".repeat(numXes) + this.emailAddress;
+        this.emailAddress = SignupCompletePage.maskEmailAddress(emailAddress);
       } else {
         this.emailAddress = 'Your email address could not be found.';
       }
@@ -33,7 +29,19 @@ export class SignupCompletePage {
     });
   }
 
+  static maskEmailAddress(emailAddress: string) : string {
+    let maskedEmailAddress = '';
+    let numXes = (emailAddress.indexOf('@') - 3);
+    maskedEmailAddress = emailAddress.substring(numXes, emailAddress.length);
+    maskedEmailAddress = "x".repeat(numXes) + maskedEmailAddress;
+    return maskedEmailAddress;
+  }
+
   searchPropertiesClicked() {
     this.navCtrl.setRoot(RentSearchPage);
+  }
+
+  notImplemented() {
+    alert('This feature is not yet implemented.');
   }
 }
