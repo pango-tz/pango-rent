@@ -23,10 +23,12 @@ import {SignupCompletePage} from "./signup-complete/signup-complete";
 import {AccountVerificationPage} from "./account-verification/account-verification";
 import {PangoComponentsModule} from "../components/pango-components.module";
 import {SystemErrorPage} from "./system-error/system-error";
+import {ForgotPasswordPage} from "./forgot-password/forgot-password";
 
 @NgModule({
   declarations: [
     AccountVerificationPage,
+    ForgotPasswordPage,
     SplashPage,
     RentTabsPage,
     LandlordTabsPage,
@@ -47,6 +49,7 @@ import {SystemErrorPage} from "./system-error/system-error";
   ],
   entryComponents: [
     AccountVerificationPage,
+    ForgotPasswordPage,
     SplashPage,
     RentTabsPage,
     LandlordTabsPage,
@@ -67,6 +70,7 @@ import {SystemErrorPage} from "./system-error/system-error";
   ],
   exports: [
     AccountVerificationPage,
+    ForgotPasswordPage,
     SplashPage,
     RentTabsPage,
     LandlordTabsPage,

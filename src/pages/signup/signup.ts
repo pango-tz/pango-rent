@@ -10,6 +10,7 @@ import {RegistrationService} from '../../providers/registration';
 import {RegistrationResponse} from "../../providers/models/RegistrationResponse";
 import {SignupCompletePage} from "../signup-complete/signup-complete";
 import {PangoModalUtils} from "../../providers/pango-modal-utils";
+import {PangoErrorResource} from "../../providers/models/PangoErrorResource";
 
 
 @Component({
@@ -222,7 +223,7 @@ export class SignupPage implements OnInit {
           this.pangoUiUtils.hideLoader();
           if (error.status == 409) {
             // USER_WITH_EMAIL_DOES_EXIST
-            this.showSystemError(`A user account with the email address: ${SignupCompletePage.maskEmailAddress(this.user.emailAddress)} already exists.`,
+            this.showSystemError(`A user account with the email address: ${RegistrationService.maskEmailAddress(this.user.emailAddress)} already exists.`,
               'TRY SIGNING IN', 'Login', this.user);
           } else {
             this.showSystemError('Something has gone wrong with our app.  Please try this action again later.', null, null, null);
@@ -243,12 +244,5 @@ export class SignupPage implements OnInit {
       };
 
       this.pangoModalUtils.presentSystemErrorModal(this.navCtrl, systemError);
-  }
-
-  dismiss(data: any) {
-    this.viewCtrl.dismiss(data);
-  }
-  onDismiss($event) {
-    this.dismiss(null);
   }
 }

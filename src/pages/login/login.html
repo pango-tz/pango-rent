@@ -19,7 +19,7 @@
       <ion-col>
         <form novalidate (ngSubmit)="doLogin(loginForm)" [formGroup]="loginForm">
           <ion-item>
-            <ion-input pangoEmail placeholder="Email" type="text" formControlName="userName"></ion-input>
+            <ion-input pangoEmail placeholder="Email Address (user name)" type="text" formControlName="userName"></ion-input>
           </ion-item>
           <p *ngIf="formErrors.userName" small pangoError>{{formErrors.userName}}</p>
           <ion-item>
@@ -31,16 +31,16 @@
           <div>&nbsp;</div>
           <div text-center>
           <div id="rememberMeCheckboxContainer">
-            <ion-checkbox (click)="notImplemented()"></ion-checkbox>
+            <ion-checkbox id="rememberMeCheckbox"></ion-checkbox>
           </div>
           <div id="rememberMeLbl">Remember Me</div>
           <div id="forgotPasswordLink">
-            <a (click)="notImplemented()">Forgot Password</a>
+            <a (click)="goToForgotPassword()">Forgot Password</a>
           </div>
           </div>
         </form>
 
-        <button block id="createAccountBtn" (click)="signup()">NEW TO PANGO?<br/>CREATE AN ACCOUNT</button>
+        <button id="createAccountBtn" (click)="signup()" ion-button>NEW TO PANGO?<br/>CREATE AN ACCOUNT</button>
       </ion-col>
     </ion-row>
   </ion-grid>

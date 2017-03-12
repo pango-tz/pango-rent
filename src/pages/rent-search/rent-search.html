@@ -3,9 +3,9 @@
 </ion-header>
 <ion-content padding>
 
-  <ion-item>
-    <button ion-button block (click)="loadSystemErrorModal()">System Error</button>
-  </ion-item>
+  <!--<ion-item>-->
+    <!--<button ion-button block (click)="loadSystemErrorModal()">System Error</button>-->
+  <!--</ion-item>-->
 
   <ion-item>
     <button ion-button block (click)="getCurrentLocation()">Get my current location</button>
@@ -13,19 +13,23 @@
   <ion-item *ngIf="currentLocation">
     <div>{{currentLocation}}</div>
   </ion-item>
-  <form novalidate (ngSubmit)="sendConfirmTokenToAccountConfirmation(confirmAccountForm)" [formGroup]="confirmAccountForm">
-    <ion-item>
-      <ion-input placeholder="Token" type="text" formControlName="confirmToken"></ion-input>
-    </ion-item>
-    <button ion-button type="submit" block>Verify Token</button>
-  </form>
+  <div>
+    <span>Helper Links</span><br/>
+    <a (click)="navLogout()">Log Out</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="navSignup()">Create Account</a>
+  </div>
+  <!--<form novalidate (ngSubmit)="sendConfirmTokenToAccountConfirmation(confirmAccountForm)" [formGroup]="confirmAccountForm">-->
+    <!--<ion-item>-->
+      <!--<ion-input placeholder="Token" type="text" formControlName="confirmToken"></ion-input>-->
+    <!--</ion-item>-->
+    <!--<button ion-button type="submit" block>Verify Token</button>-->
+  <!--</form>-->
 
   <!--This was just helper stuff for development that allowed me to get to pages without performing operations.-->
   <!--<br/>-->
-  <ion-item>
-    <button ion-button (click)="getRegistrationDate()">Get registration date</button>
-    <button ion-button (click)="deleteRegistrationDate()">Delete registration date</button>
-  </ion-item>
+  <!--<ion-item>-->
+    <!--<button ion-button (click)="getRegistrationDate()">Get registration date</button>-->
+    <!--<button ion-button (click)="deleteRegistrationDate()">Delete registration date</button>-->
+  <!--</ion-item>-->
   <!--<ion-item *ngIf="registrationDate">-->
     <!--<div>{{registrationDate}}</div>-->
   <!--</ion-item>-->
@@ -35,7 +39,7 @@
     <!--</ion-item>-->
     <!--<button ion-button type="submit" block>Save Email To Storage</button>-->
   <!--</form>-->
-  <div><a href="#" (click)="loadThanksForSigningUpPage()">loadThanksForSigningUpPage</a></div>
+  <!--<div><a href="#" (click)="loadThanksForSigningUpPage()">loadThanksForSigningUpPage</a></div>-->
   <!--<div>&nbsp;</div>-->
   <!--<div>apiBasePath: {{apiBasePath}}</div>-->
 </ion-content>

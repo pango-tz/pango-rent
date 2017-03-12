@@ -11,6 +11,9 @@ import {UserResource} from '../../providers/models/models';
 import {AccountVerificationPage} from '../account-verification/account-verification';
 import {BASE_PATH} from '../../providers/variables';
 import {PangoModalUtils} from "../../providers/pango-modal-utils";
+import {Auth} from "../../providers/auth";
+import {RentTabsPage} from "../rent-tabs/rent-tabs";
+import {SignupPage} from "../signup/signup";
 
 @Component({
   selector: 'page-rent-search',
@@ -25,6 +28,7 @@ export class RentSearchPage {
               public pangoUiUtils: PangoUiUtils,
               public pangoModalUtils: PangoModalUtils,
               public properties: Properties,
+              public auth: Auth,
               public registrationService: RegistrationService,
               @Inject(FormBuilder) private confirmAccountFormBuilder: FormBuilder,
               @Inject(FormBuilder) private emailAddressFormBuilder: FormBuilder,
@@ -59,6 +63,15 @@ export class RentSearchPage {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+  }
+
+  navSignup() {
+    this.navCtrl.setRoot(SignupPage);
+  }
+
+  navLogout() {
+    this.auth.logOut();
+    this.navCtrl.setRoot(RentTabsPage);
   }
 
   loadSystemErrorModal(){

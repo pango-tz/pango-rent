@@ -7,6 +7,7 @@ import {PangoValidators} from '../../validators/pango-validator';
 import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {Error} from '../../providers/models/Error';
 import {SignupPage} from "../signup/signup";
+import {ForgotPasswordPage} from "../forgot-password/forgot-password";
 /*
  Generated class for the Login page.
 
@@ -114,6 +115,7 @@ export class LoginPage implements OnInit {
 
       this.auth.login(this.login)
         .subscribe((loginResponse: LoginResponse) => {
+          this.uiUtils.hideLoader();
           this.dismiss(loginResponse)
         }, (error: Error) => {
           if (error.status === 401) {
@@ -135,7 +137,7 @@ export class LoginPage implements OnInit {
     this.navCtrl.setRoot(SignupPage);
   }
 
-  notImplemented() {
-    alert('This feature is not yet implemented.');
+  goToForgotPassword(){
+    this.navCtrl.setRoot(ForgotPasswordPage)
   }
 }

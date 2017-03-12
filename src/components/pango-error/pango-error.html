@@ -1,14 +1,20 @@
-<ion-navbar color="dark" >
+<!--
+Found issue in latest ionic2 related to ion-navbar rendering:
+https://github.com/driftyco/ionic/issues/6598
+The recommendation was to use the ion-toolbar.
+-->
+<ion-toolbar primary color="dark" >
   <ion-buttons left start small>
     <img height=47 src="assets/img/logos/pango.png">
   </ion-buttons>
   <ion-title text-center>{{pangoErrorResource.navBarTitle}}</ion-title>
   <ion-buttons end bottom small>
-    <button end (click) = "closeModal()" text-capitalize ion-button small>
+    <button end (click) = "closeModal()" text-capitalize ion-button small >
       {{pangoErrorResource.navBarBackText}}
     </button>
   </ion-buttons>
-</ion-navbar>
+</ion-toolbar>
+
 <ion-content>
   <div text-center>
     <img src="assets/img/alert-icon.png" id="pango-error-alert-icon">

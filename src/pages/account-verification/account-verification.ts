@@ -5,6 +5,7 @@ import {LoginPage} from "../login/login";
 import {RegistrationService} from "../../providers/registration";
 import {ConfirmAccountResponse} from "../../providers/models/ConfirmAccountResponse";
 import {Error} from '../../providers/models/Error';
+import {PangoModalUtils} from "../../providers/pango-modal-utils";
 
 @Component({
   selector: 'page-account-verification',
@@ -18,7 +19,8 @@ export class AccountVerificationPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private modalCtrl: ModalController,
-              public registrationService: RegistrationService) {
+              public registrationService: RegistrationService,
+              public pangoModalUtils: PangoModalUtils) {
     this.verificationToken = navParams.get('verificationToken');
 
     registrationService.verifyAccount(this.verificationToken)
@@ -26,11 +28,22 @@ export class AccountVerificationPage {
         this.verificationMessage = 'Your account has been verified!';
         this.verified = 'verified';
       }, (error: Error) => {
-        //todo: plug in the error modal to be developed
-        console.log('Account Verification Error > Status: ' + error.status + ', Details: ' + JSON.stringify(error));
-        this.verificationMessage = 'There was an error and your account could not be verified!';
-        this.verified = 'failed';
+        this.showSystemError('There was an error and your account could not be verified!', null, null, null);
       });
+  }
+
+  showSystemError(errorMessage: string, buttonTwoText: string, buttonTwoAction: string, payload: any) {
+    let systemError = {
+      'navBarTitle': 'Create an Account',
+      'navBarBackText': 'Close',
+      'errorMessage': errorMessage,
+      'buttonOneText': 'GO BACK',
+      'buttonTwoText': buttonTwoText,
+      'buttonTwoAction': buttonTwoAction,
+      'payload': payload
+    };
+
+    this.pangoModalUtils.presentSystemErrorModal(this.navCtrl, systemError);
   }
 
   searchPropertiesClicked() {

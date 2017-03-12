@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import { NavController} from 'ionic-angular';
-import {RentSearchPage} from "../../pages/rent-search/rent-search";
+import {RentTabsPage} from "../../pages/rent-tabs/rent-tabs";
 
 @Component({
   selector: 'create-account-navbar',
@@ -12,6 +12,6 @@ export class CreateAccountNavbar {
   }
 
   cancel() {
-    this.navCtrl.setRoot(RentSearchPage)
+    this.navCtrl.setRoot(RentTabsPage)
   }
 }
