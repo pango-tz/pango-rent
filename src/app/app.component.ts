@@ -24,8 +24,6 @@ export class PangoRentApp {
     });
   }
 
-  // TODO: There is a delay in routing the deep link such that it shows the home page first, then routes.
-  // TODO: How can we go straight to the deep link page?
   ngAfterViewInit() {
     this.platform.ready().then(() => {
       if (this.platformDetails.isMobilePhoneDevice()) {

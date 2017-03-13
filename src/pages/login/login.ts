@@ -1,22 +1,24 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { NavController, ViewController, NavParams } from 'ionic-angular';
+import {Component, Inject, OnInit} from '@angular/core';
+import {NavController, ViewController, NavParams} from 'ionic-angular';
 import {Auth} from '../../providers/auth';
-import { LoginResource, LoginResponse} from '../../providers/models/models';
+import {LoginResource, LoginResponse} from '../../providers/models/models';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {PangoValidators} from '../../validators/pango-validator';
 import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {Error} from '../../providers/models/Error';
+import {SignupPage} from "../signup/signup";
+import {ForgotPasswordPage} from "../forgot-password/forgot-password";
 /*
-  Generated class for the Login page.
+ Generated class for the Login page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
+ */
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class LoginPage implements OnInit{
+export class LoginPage implements OnInit {
   static loginErrorMessage: string = 'You must sign in to view this page.';
   login: LoginResource = {
     userName: '',
@@ -27,7 +29,7 @@ export class LoginPage implements OnInit{
   message401 = 'Wrong email or password. Please try again.';
   loginForm: FormGroup;
   fatalErrorMessage: string = '';
-  formErrors : any = {
+  formErrors: any = {
     userName: '',
     password: ''
   };
@@ -45,7 +47,7 @@ export class LoginPage implements OnInit{
 
   constructor(public navCtrl: NavController,
               public auth: Auth,
-              @Inject(FormBuilder)private formBuilder: FormBuilder,
+              @Inject(FormBuilder) private formBuilder: FormBuilder,
               private uiUtils: PangoUiUtils,
               public viewCtrl: ViewController,
               params: NavParams) {
@@ -53,13 +55,14 @@ export class LoginPage implements OnInit{
     this.fatalErrorMessage = params.get('loginErrorMessage');
 
   }
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       userName: ['', [Validators.required, PangoValidators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    this.loginForm.valueChanges.subscribe( (data) => this.validate(data));
+    this.loginForm.valueChanges.subscribe((data) => this.validate(data));
   }
 
   validateControl(control: AbstractControl, field: string) {
@@ -73,7 +76,9 @@ export class LoginPage implements OnInit{
   }
 
   validate(data?: any) {
-    if (!this.loginForm) { return;}
+    if (!this.loginForm) {
+      return;
+    }
 
     const form = this.loginForm;
 
@@ -94,10 +99,12 @@ export class LoginPage implements OnInit{
   dismiss(data: any) {
     this.viewCtrl.dismiss(data);
   }
+
   onDismiss($event) {
     this.dismiss(null);
   }
-  doLogin({ value, valid }: { value: LoginResource, valid: boolean }) {
+
+  doLogin({value, valid}: {value: LoginResource, valid: boolean}) {
 
     this.fatalErrorMessage = '';
 
@@ -108,6 +115,7 @@ export class LoginPage implements OnInit{
 
       this.auth.login(this.login)
         .subscribe((loginResponse: LoginResponse) => {
+          this.uiUtils.hideLoader();
           this.dismiss(loginResponse)
         }, (error: Error) => {
           if (error.status === 401) {
@@ -125,4 +133,11 @@ export class LoginPage implements OnInit{
 
   }
 
+  signup() {
+    this.navCtrl.setRoot(SignupPage);
+  }
+
+  goToForgotPassword(){
+    this.navCtrl.setRoot(ForgotPasswordPage)
+  }
 }

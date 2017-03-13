@@ -14,6 +14,7 @@ import {AuthHttp, AuthConfig} from 'angular2-jwt';
 import {Http} from '@angular/http';
 import {Storage} from '@ionic/storage';
 import {STORAGE_GLOBALS} from './constants';
+import {PangoModalUtils} from "./pango-modal-utils";
 
 let storage = new Storage();
 
@@ -34,6 +35,7 @@ export function getAuthHttp(http) {
   providers: [
     PlatformDetails,
     PangoUiUtils,
+    PangoModalUtils,
     PangoHttp,
     Auth,
     Properties,

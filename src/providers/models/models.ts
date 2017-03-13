@@ -8,6 +8,7 @@ export * from './EnquiryResource';
 export * from './Error';
 export * from './LoginResponse';
 export * from './LoginResource';
+export * from './PangoErrorResource';
 export * from './PerPeriod';
 export * from './PropertyDetailResource';
 export * from './PropertyFeature';

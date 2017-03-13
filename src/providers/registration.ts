@@ -98,4 +98,18 @@ export class RegistrationService {
       this.storage.get(STORAGE_GLOBALS.USER_REGISTERED_EMAIL).then(email => email)
     );
   }
+
+  getUserEmailAddressMasked(): Observable<string> {
+    return Observable.fromPromise(
+      this.storage.get(STORAGE_GLOBALS.USER_REGISTERED_EMAIL).then(email => RegistrationService.maskEmailAddress(email))
+    );
+  }
+
+
+  static maskEmailAddress(emailAddress: string) : string {
+    let numXes = (emailAddress.indexOf('@') - 3);
+    let maskedEmailAddress = emailAddress.substring(numXes, emailAddress.length);
+    maskedEmailAddress = "x".repeat(numXes) + maskedEmailAddress;
+    return maskedEmailAddress;
+  }
 }

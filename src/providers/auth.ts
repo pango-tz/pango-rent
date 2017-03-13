@@ -21,7 +21,7 @@ export class Auth {
   private static loggedIn: boolean = false;
 
   constructor(public pangoHttp: PangoHttp, private storage: Storage) {
-    
+
   }
 
   login(loginResource: LoginResource): Observable<LoginResponse> {
@@ -43,6 +43,7 @@ export class Auth {
   }
 
   public isLoggedIn(): Observable<boolean> {
+    // TODO: Investigate why this returns false when we have a token.
     return Observable.fromPromise(
       this.storage.get(STORAGE_GLOBALS.USER_TOKEN).then(token => tokenNotExpired(null, token))
     );

@@ -3,13 +3,17 @@ import {NavController} from 'ionic-angular';
 import {Geolocation} from 'ionic-native';
 import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {Properties} from '../../providers/properties';
-import {RegistrationService} from "../../providers/registration";
-import {SignupCompletePage} from "../signup-complete/signup-complete";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {ConfirmAccountResource} from "../../providers/models/models";
-import {UserResource} from "../../providers/models/models";
-import {AccountVerificationPage} from "../account-verification/account-verification";
+import {RegistrationService} from '../../providers/registration';
+import {SignupCompletePage} from '../signup-complete/signup-complete';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ConfirmAccountResource} from '../../providers/models/models';
+import {UserResource} from '../../providers/models/models';
+import {AccountVerificationPage} from '../account-verification/account-verification';
 import {BASE_PATH} from '../../providers/variables';
+import {PangoModalUtils} from "../../providers/pango-modal-utils";
+import {Auth} from "../../providers/auth";
+import {RentTabsPage} from "../rent-tabs/rent-tabs";
+import {SignupPage} from "../signup/signup";
 
 @Component({
   selector: 'page-rent-search',
@@ -22,7 +26,9 @@ export class RentSearchPage {
 
   constructor(public navCtrl: NavController,
               public pangoUiUtils: PangoUiUtils,
+              public pangoModalUtils: PangoModalUtils,
               public properties: Properties,
+              public auth: Auth,
               public registrationService: RegistrationService,
               @Inject(FormBuilder) private confirmAccountFormBuilder: FormBuilder,
               @Inject(FormBuilder) private emailAddressFormBuilder: FormBuilder,
@@ -43,8 +49,8 @@ export class RentSearchPage {
       this.properties.get({
         latitude: Properties.latitude,
         longitude: Properties.longitude,
-        propertyPurpose: "Home",
-        moveInDateAsString: "2017-01-17"
+        propertyPurpose: 'Home',
+        moveInDateAsString: '2017-01-17'
       })
         .subscribe((properties: Properties[]) => {
           console.log(properties);
@@ -56,44 +62,67 @@ export class RentSearchPage {
 
     }).catch((error) => {
       console.log('Error getting location', error);
-    })
+    });
   }
 
-  // getRegistrationDate() {
-  //   this.registrationService.getRegistrationDate().subscribe((date: string) => {
-  //
-  //     this.registrationDate = date;
-  //
-  //   }, (error: Error) => {
-  //     this.registrationDate = 'There was a problem retrieving your registration date.'
-  //   });
-  // }
-  //
-  // deleteRegistrationDate() {
-  //   this.registrationService.deleteRegistrationDate().subscribe((date: string) => {
-  //
-  //     this.registrationDate = date;
-  //
-  //   }, (error: Error) => {
-  //     this.registrationDate = 'There was a problem deleting your registration date.'
-  //   });
-  // }
+  navSignup() {
+    this.navCtrl.setRoot(SignupPage);
+  }
+
+  navLogout() {
+    this.auth.logOut();
+    this.navCtrl.setRoot(RentTabsPage);
+  }
+
+  loadSystemErrorModal(){
+    let systemError = {
+      'navBarTitle': 'Create an Account',
+      'navBarBackText': 'Close',
+      'errorMessage': 'this is a test error message',
+      'buttonOneText': 'GO BACK',
+      'buttonTwoText': 'TRY SIGNING IN',
+      'buttonTwoAction': 'Login',
+      'payload': {'anyvariable':'my test payload'}
+    };
+
+    this.pangoModalUtils.presentSystemErrorModal(this.navCtrl, systemError);
+  }
+
+  getRegistrationDate() {
+    this.registrationService.getRegistrationDate().subscribe((date: string) => {
+
+      this.registrationDate = date;
+
+    }, (error: Error) => {
+      this.registrationDate = 'There was a problem retrieving your registration date.'
+    });
+  }
+
+  deleteRegistrationDate() {
+    this.registrationService.deleteRegistrationDate().subscribe((date: string) => {
+
+      this.registrationDate = date;
+
+    }, (error: Error) => {
+      this.registrationDate = 'There was a problem deleting your registration date.'
+    });
+  }
 
   ionViewDidLoad() {
     console.log('Hello RentSearchPage Page');
   }
 
   createAlert(event: any) {
-    console.log("we got a create alert event");
+    console.log('we got a create alert event');
   }
 
   filter(event: any) {
-    console.log("we got a filter event");
+    console.log('we got a filter event');
   }
 
-  // loadThanksForSigningUpPage() {
-  //   this.navCtrl.push(SignupCompletePage);
-  // }
+  loadThanksForSigningUpPage() {
+    this.navCtrl.setRoot(SignupCompletePage);
+  }
 
   confirmAccountForm: FormGroup;
   confirmAccount: ConfirmAccountResource = {

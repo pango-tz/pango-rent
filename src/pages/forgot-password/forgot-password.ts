@@ -1,21 +1,20 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {RentSearchPage} from "../rent-search/rent-search";
 import {RegistrationService} from "../../providers/registration";
-
+import {SignupPage} from "../signup/signup";
 
 @Component({
-  selector: 'page-signup-complete',
-  templateUrl: 'signup-complete.html'
+  selector: 'page-forgot-password',
+  templateUrl: 'forgot-password.html'
 })
-export class SignupCompletePage {
+export class ForgotPasswordPage {
 
-  emailAddress: string;
+  pageInstructions: string = 'We can email a password reminder to:';
+  emailAddress: string = '';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public registrationService: RegistrationService) {
-
     // Retrieve the email address from local storage and mask it.
     registrationService.getUserEmailAddressMasked().subscribe((emailAddress: string) => {
       if (emailAddress) {
@@ -29,11 +28,15 @@ export class SignupCompletePage {
     });
   }
 
-  searchPropertiesClicked() {
-    this.navCtrl.setRoot(RentSearchPage);
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ForgotPasswordPage');
   }
 
-  notImplemented() {
-    alert('This feature is not yet implemented.');
+  sendReminderEmail() {
+
+  }
+
+  goToCreateNewAccount() {
+    this.navCtrl.setRoot(SignupPage);
   }
 }

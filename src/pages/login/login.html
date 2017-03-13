@@ -5,10 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-  <pango-modal-navbar (onCancel)="onDismiss($event)" subTitle="Login" backButtonText="Cancel"></pango-modal-navbar>
+  <pango-modal-navbar (onCancel)="onDismiss($event)" subTitle="Sign In or Register"
+                      backButtonText="Cancel"></pango-modal-navbar>
 </ion-header>
-
-
 <ion-content padding>
   <ion-grid>
     <ion-row center *ngIf="fatalErrorMessage" color="danger">
@@ -20,7 +19,7 @@
       <ion-col>
         <form novalidate (ngSubmit)="doLogin(loginForm)" [formGroup]="loginForm">
           <ion-item>
-            <ion-input pangoEmail placeholder="Email" type="text" formControlName="userName"></ion-input>
+            <ion-input pangoEmail placeholder="Email Address (user name)" type="text" formControlName="userName"></ion-input>
           </ion-item>
           <p *ngIf="formErrors.userName" small pangoError>{{formErrors.userName}}</p>
           <ion-item>
@@ -28,7 +27,20 @@
           </ion-item>
           <p *ngIf="formErrors.password" small pangoError>{{formErrors.password}}</p>
           <button [disabled]="loginForm.invalid" ion-button type="submit" block>Sign In</button>
+
+          <div>&nbsp;</div>
+          <div text-center>
+          <div id="rememberMeCheckboxContainer">
+            <ion-checkbox id="rememberMeCheckbox"></ion-checkbox>
+          </div>
+          <div id="rememberMeLbl">Remember Me</div>
+          <div id="forgotPasswordLink">
+            <a (click)="goToForgotPassword()">Forgot Password</a>
+          </div>
+          </div>
         </form>
+
+        <button id="createAccountBtn" (click)="signup()" ion-button>NEW TO PANGO?<br/>CREATE AN ACCOUNT</button>
       </ion-col>
     </ion-row>
   </ion-grid>

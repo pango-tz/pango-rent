@@ -9,6 +9,8 @@ import {Error} from '../../providers/models/Error';
 import {RegistrationService} from '../../providers/registration';
 import {RegistrationResponse} from "../../providers/models/RegistrationResponse";
 import {SignupCompletePage} from "../signup-complete/signup-complete";
+import {PangoModalUtils} from "../../providers/pango-modal-utils";
+import {PangoErrorResource} from "../../providers/models/PangoErrorResource";
 
 
 @Component({
@@ -83,6 +85,7 @@ export class SignupPage implements OnInit {
               public pangoUiUtils: PangoUiUtils,
               public registrationService: RegistrationService,
               public viewCtrl: ViewController,
+              public pangoModalUtils: PangoModalUtils,
               @Inject(FormBuilder) private formBuilder: FormBuilder) {
   }
 
@@ -134,7 +137,7 @@ export class SignupPage implements OnInit {
     if (!ctrlAddressLine1.valid || !ctrlAddressLine2.valid || !ctrlCity.valid || !ctrlState.valid || !ctrlZip.valid || !ctrlCountry.valid) {
       this.formErrors['address'] += 'Please fill out all address fields.';
 
-      // todo: It does not appear that I can force validation on untouched controls in order to make them decorate red.
+      // It does not appear that I can force validation on untouched controls in order to make them decorate red.
       ctrlAddressLine1.setErrors(['err', 'err']);
       ctrlAddressLine1.updateValueAndValidity({onlySelf: true, emitEvent: false});
 
@@ -197,8 +200,6 @@ export class SignupPage implements OnInit {
     }
 
     this.validateAddress(form);
-
-    console.log('formErrors = ' + JSON.stringify(this.formErrors));
   }
 
   clearFieldErrors(field: string) {
@@ -219,28 +220,29 @@ export class SignupPage implements OnInit {
           this.navCtrl.setRoot(SignupCompletePage);
 
         }, (error: Error) => {
-
+          this.pangoUiUtils.hideLoader();
           if (error.status == 409) {
             // USER_WITH_EMAIL_DOES_EXIST
-            this.fatalErrorMessage = 'That e-mail is already registered.';
+            this.showSystemError(`A user account with the email address: ${RegistrationService.maskEmailAddress(this.user.emailAddress)} already exists.`,
+              'TRY SIGNING IN', 'Login', this.user);
           } else {
-            this.fatalErrorMessage = 'A problem has occurred.  Please try again.';
-            this.fatalErrorMessage = JSON.stringify(error.errors);
+            this.showSystemError('Something has gone wrong with our app.  Please try this action again later.', null, null, null);
           }
-
-          this.pangoUiUtils.hideLoader();
-          this.content.scrollToTop();
         });
-    } else {
-      this.fatalErrorMessage = 'Please complete all the required fields.';
-      this.content.scrollToTop();
     }
   }
 
-  dismiss(data: any) {
-    this.viewCtrl.dismiss(data);
-  }
-  onDismiss($event) {
-    this.dismiss(null);
+  showSystemError(errorMessage: string, buttonTwoText: string, buttonTwoAction: string, payload: any){
+      let systemError = {
+        'navBarTitle': 'Create an Account',
+        'navBarBackText': 'Close',
+        'errorMessage': errorMessage,
+        'buttonOneText': 'GO BACK',
+        'buttonTwoText': buttonTwoText,
+        'buttonTwoAction': buttonTwoAction,
+        'payload': payload
+      };
+
+      this.pangoModalUtils.presentSystemErrorModal(this.navCtrl, systemError);
   }
 }
