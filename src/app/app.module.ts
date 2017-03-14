@@ -5,6 +5,8 @@ import { PangoRentApp } from './app.component';
 import { Storage } from '@ionic/storage';
 import {PangoPagesModule} from '../pages/pango-pages.module';
 import {pangoLinks} from '../pages/pango-links';
+
+export function provideStorage() { return new Storage(); }
 @NgModule({
   declarations: [
     PangoRentApp
@@ -20,7 +22,7 @@ import {pangoLinks} from '../pages/pango-links';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Storage
+    {provide: Storage, useFactory: provideStorage}
   ]
 })
 export class AppModule {}

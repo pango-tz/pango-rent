@@ -89,7 +89,8 @@ import {ForgotPasswordPage} from "./forgot-password/forgot-password";
     SignupCompletePage,
     SystemErrorPage
   ],
-  imports: [IonicModule,
+  imports: [
+    IonicModule,
     PangoContainersModule,
     PangoProvidersModule,
     ReactiveFormsModule,
