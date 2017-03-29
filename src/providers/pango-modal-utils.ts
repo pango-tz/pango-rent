@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ModalController, NavController} from 'ionic-angular';
 import 'rxjs/add/operator/map';
-import {PangoErrorResource} from "./models/PangoErrorResource";
-import {LoginPage} from "../pages/login/login";
-import {SystemErrorPage} from "../pages/system-error/system-error";
-import {PangoError} from "../components/pango-error/pango-error.component";
-import {RentTabsPage} from "../pages/rent-tabs/rent-tabs";
+import { PangoErrorResource } from "./models/PangoErrorResource";
+import { LoginPage } from '../pages/login/login';
+import { PangoError } from '../components/pango-error/pango-error.component';
+import { SignupPage } from '../pages/signup/signup';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
 @Injectable()
 export class PangoModalUtils {
@@ -13,24 +13,37 @@ export class PangoModalUtils {
   constructor(public modalCtrl: ModalController) {
   }
 
-  presentLoginModal(navCtrl: NavController) {
-    let loginModal = this.modalCtrl.create(LoginPage, {loginMessage: LoginPage.loginErrorMessage}, {enableBackdropDismiss: false});
+  public presentForgotPasswordModal(navCtrl: NavController) {
+    let forgotModal = this.modalCtrl.create(ForgotPasswordPage, {}, {enableBackdropDismiss: false});
 
-    loginModal.onDidDismiss(data => {
-      if (data === null) {
-        // do nothing, just let the modal close
-        // navCtrl.parent.select(0);
-      }
-    });
+    forgotModal.present();
 
-    loginModal.present();
+    return forgotModal;
   }
 
-  presentSystemErrorModal(navCtrl: NavController, pangoErrorResource: PangoErrorResource) {
+  public presentRegistrationModal(navCtrl: NavController) {
+
+    let registrationModal = this.modalCtrl.create(SignupPage, {}, {enableBackdropDismiss: false});
+
+    registrationModal.present();
+
+    return registrationModal;
+  }
+
+  public presentLoginModal(navCtrl: NavController) {
+    let loginModal = this.modalCtrl.create(LoginPage, {loginMessage: LoginPage.loginErrorMessage}, {enableBackdropDismiss: false});
+
+    loginModal.present();
+
+    return loginModal;
+  }
+
+  public presentSystemErrorModal(navCtrl: NavController, pangoErrorResource: PangoErrorResource) {
     let systemErrorModal = this.modalCtrl.create(PangoError,
       {'pangoErrorResource': pangoErrorResource},
       {enableBackdropDismiss: false});
 
+      /*
     systemErrorModal.onDidDismiss(data => {
       if (data && data.followButtonTwoAction) {
         if (data.buttonTwoAction.toLowerCase() === 'login') {
@@ -38,7 +51,9 @@ export class PangoModalUtils {
         }
       }
     });
-
+    */
     systemErrorModal.present();
+
+    return systemErrorModal;
   }
 }

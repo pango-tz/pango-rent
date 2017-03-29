@@ -1,5 +1,6 @@
 <ion-header no-border>
-  <create-account-navbar></create-account-navbar>
+  <pango-modal-navbar (onCancel)="onDismiss($event)" subTitle="Create An Acccount"
+                      backButtonText="Cancel"></pango-modal-navbar>
 </ion-header>
 <ion-content padding delegate-handle="content">
   <ion-grid>
@@ -11,54 +12,61 @@
     <ion-row center>
       <ion-col>
         <form novalidate (ngSubmit)="doSignup(registrationForm)" [formGroup]="registrationForm">
-          <ion-item>
-            <ion-input placeholder="First Name *" type="text" formControlName="firstName"></ion-input>
-            <ion-input placeholder="Surname *" type="text" formControlName="lastName"></ion-input>
-          </ion-item>
-          <p *ngIf="formErrors.firstName" small pangoError>{{formErrors.firstName}}</p>
-          <p *ngIf="formErrors.lastName" small pangoError>{{formErrors.lastName}}</p>
+          <ion-slides>
+            <ion-slide>
+              <ion-item>
+                <ion-input placeholder="First Name *" type="text" formControlName="firstName"></ion-input>
+              </ion-item>
+              <p *ngIf="formErrors.firstName" small pangoError>{{formErrors.firstName}}</p>
+              <ion-item>
+                <ion-input placeholder="Surname *" type="text" formControlName="lastName"></ion-input>
+              </ion-item>
+              <p *ngIf="formErrors.lastName" small pangoError>{{formErrors.lastName}}</p>
+              <ion-item>
+                <p>Your E-mail address will be your Pango user name.</p>
+                <ion-input pangoEmail placeholder="E-mail Address *" type="text" formControlName="emailAddress"></ion-input>
+              </ion-item>
+              <p *ngIf="formErrors.emailAddress" small pangoError>{{formErrors.emailAddress}}</p>
 
-          <ion-item>
-            <p>Your E-mail address will be your Pango user name.</p>
-            <ion-input pangoEmail placeholder="E-mail Address *" type="text" formControlName="emailAddress"></ion-input>
-          </ion-item>
-          <p *ngIf="formErrors.emailAddress" small pangoError>{{formErrors.emailAddress}}</p>
+              <ion-item>
+                <ion-input placeholder="Phone Number" type="text" formControlName="phoneNumber"></ion-input>
+              </ion-item>
+              <p *ngIf="formErrors.phoneNumber" small pangoError>{{formErrors.phoneNumber}}</p>
 
-          <ion-item>
-            <ion-input placeholder="Phone Number" type="text" formControlName="phoneNumber"></ion-input>
-          </ion-item>
-          <p *ngIf="formErrors.phoneNumber" small pangoError>{{formErrors.phoneNumber}}</p>
+              <ion-item>
+                <ion-input placeholder="Password *" type="password" formControlName="password"></ion-input>
+              </ion-item>
+              <p *ngIf="formErrors.password" small pangoError>{{formErrors.password}}</p>
 
-          <ion-item>
-            <ion-input placeholder="Password *" type="password" formControlName="password"></ion-input>
-          </ion-item>
-          <p *ngIf="formErrors.password" small pangoError>{{formErrors.password}}</p>
-
-          <ion-item>
-            <ion-input pangoConfirmPassword compareTo="password" placeholder="Retype Password *" type="password"
-                       formControlName="confirmPassword"></ion-input>
-          </ion-item>
-          <p *ngIf="formErrors.confirmPassword" small pangoError>{{formErrors.confirmPassword}}</p>
-
-          <div formGroupName="address">
-            <p *ngIf="formErrors.address" small pangoError>{{formErrors.address}}</p>
-            <ion-item>
-              <ion-input placeholder="Premise + Street Address" type="text" formControlName="addressLine1"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input pangoAddress placeholder="Apt. Number" type="text"
-                         formControlName="addressLine2"></ion-input>
-              <ion-input pangoAddress placeholder="Postcode" type="text" formControlName="zip"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input pangoAddress placeholder="Locality" type="text" formControlName="state"></ion-input>
-              <ion-input pangoAddress placeholder="City" type="text" formControlName="city"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input pangoAddress placeholder="Country" type="text" formControlName="country"></ion-input>
-            </ion-item>
-          </div>
-          <button [disabled]="registrationForm.invalid" ion-button type="submit" block>CREATE ACCOUNT</button>
+              <ion-item>
+                <ion-input pangoConfirmPassword compareTo="password" placeholder="Retype Password *" type="password"
+                          formControlName="confirmPassword"></ion-input>
+              </ion-item>
+              <p *ngIf="formErrors.confirmPassword" small pangoError>{{formErrors.confirmPassword}}</p>
+              <button [disabled]="registrationForm.invalid" type="button" ion-button (click)="next()" block>NEXT</button>
+            </ion-slide>
+            <ion-slide formGroupName="address">
+              <p *ngIf="formErrors.address" small pangoError>{{formErrors.address}}</p>
+              <ion-item>
+                <ion-input placeholder="Premise + Street Address" type="text" formControlName="addressLine1"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input pangoAddress placeholder="Apt. Number" type="text"
+                          formControlName="addressLine2"></ion-input>
+                <ion-input pangoAddress placeholder="Postcode" type="text" formControlName="zip"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input pangoAddress placeholder="Locality" type="text" formControlName="state"></ion-input>
+                <ion-input pangoAddress placeholder="City" type="text" formControlName="city"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input pangoAddress placeholder="Country" type="text" formControlName="country"></ion-input>
+              </ion-item>
+              <button [disabled]="registrationForm.invalid" ion-button type="submit" block>CREATE ACCOUNT</button>
+              <br>
+              <button ion-button type="submit" (click)="back()" type="button"  block>BACK</button>
+            </ion-slide>
+          </ion-slides>
         </form>
       </ion-col>
     </ion-row>

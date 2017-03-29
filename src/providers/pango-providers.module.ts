@@ -15,7 +15,8 @@ import {Http} from '@angular/http';
 import {Storage} from '@ionic/storage';
 import {STORAGE_GLOBALS} from './constants';
 import {PangoModalUtils} from "./pango-modal-utils";
-
+import {LoginFlowHandler} from './login-flow-handler';
+import { ErrorModalUtils } from './error-modal-utils';
 let storage = new Storage();
 
 export function getAuthHttp(http) {
@@ -38,6 +39,8 @@ export function getAuthHttp(http) {
     PangoModalUtils,
     PangoHttp,
     Auth,
+    ErrorModalUtils,
+    LoginFlowHandler,
     Properties,
     RegistrationService,
     {provide: BASE_PATH, useValue: 'http://dev.pango-apis.com/apis/v1'},

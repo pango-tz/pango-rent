@@ -9,9 +9,7 @@ import {Error} from '../../providers/models/Error';
 import {RegistrationService} from '../../providers/registration';
 import {RegistrationResponse} from "../../providers/models/RegistrationResponse";
 import {SignupCompletePage} from "../signup-complete/signup-complete";
-import {PangoModalUtils} from "../../providers/pango-modal-utils";
-import {PangoErrorResource} from "../../providers/models/PangoErrorResource";
-
+import { Slides } from 'ionic-angular';
 
 @Component({
   selector: 'page-signup',
@@ -21,6 +19,7 @@ export class SignupPage implements OnInit {
   fatalErrorMessage: string = '';
 
   @ViewChild(Content) content: Content;
+  @ViewChild(Slides) slides: Slides;
 
   registrationForm: FormGroup;
   user: UserResource = {
@@ -85,7 +84,7 @@ export class SignupPage implements OnInit {
               public pangoUiUtils: PangoUiUtils,
               public registrationService: RegistrationService,
               public viewCtrl: ViewController,
-              public pangoModalUtils: PangoModalUtils,
+
               @Inject(FormBuilder) private formBuilder: FormBuilder) {
   }
 
@@ -93,7 +92,13 @@ export class SignupPage implements OnInit {
     console.log('ionViewDidLoad: SignupPage.');
   }
 
+  onDismiss( event: any) {
+    this.viewCtrl.dismiss(event);
+  }
+
   ngOnInit() {
+
+
     this.registrationForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
@@ -114,6 +119,18 @@ export class SignupPage implements OnInit {
     this.registrationForm.valueChanges.subscribe((data) => this.validate(data));
   }
 
+  next() {
+    console.log("next is being called");
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+    this.slides.lockSwipes(true);
+  }
+
+  back() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
+    this.slides.lockSwipes(true);
+  }
   validateControl(control: AbstractControl, field: string) {
     if (control && control.dirty && !control.valid) {
       const messages = this.validationMessages[field];
@@ -243,6 +260,7 @@ export class SignupPage implements OnInit {
         'payload': payload
       };
 
-      this.pangoModalUtils.presentSystemErrorModal(this.navCtrl, systemError);
+      this.onDismiss(systemError);
+
   }
 }

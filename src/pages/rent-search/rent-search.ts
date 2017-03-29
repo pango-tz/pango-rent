@@ -14,7 +14,7 @@ import {PangoModalUtils} from "../../providers/pango-modal-utils";
 import {Auth} from "../../providers/auth";
 import {RentTabsPage} from "../rent-tabs/rent-tabs";
 import {SignupPage} from "../signup/signup";
-
+import {LoginFlowHandler} from "../../providers/login-flow-handler"
 @Component({
   selector: 'page-rent-search',
   templateUrl: 'rent-search.html'
@@ -29,6 +29,7 @@ export class RentSearchPage {
               public pangoModalUtils: PangoModalUtils,
               public properties: Properties,
               public auth: Auth,
+              public loginFlow: LoginFlowHandler,
               public registrationService: RegistrationService,
               @Inject(FormBuilder) private confirmAccountFormBuilder: FormBuilder,
               @Inject(FormBuilder) private emailAddressFormBuilder: FormBuilder,
@@ -85,7 +86,9 @@ export class RentSearchPage {
       'payload': {'anyvariable':'my test payload'}
     };
 
-    this.pangoModalUtils.presentSystemErrorModal(this.navCtrl, systemError);
+    this.loginFlow.showErrorModal(this.navCtrl, systemError, (data) => {
+      console.log(data);
+    });
   }
 
   getRegistrationDate() {
