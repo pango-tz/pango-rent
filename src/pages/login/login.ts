@@ -8,6 +8,7 @@ import {PangoUiUtils} from '../../providers/pango-ui-utils';
 import {Error} from '../../providers/models/Error';
 import {SignupPage} from "../signup/signup";
 import {ForgotPasswordPage} from "../forgot-password/forgot-password";
+import {LoginFlowHandler} from '../../providers/login-flow-handler';
 /*
  Generated class for the Login page.
 
@@ -50,6 +51,7 @@ export class LoginPage implements OnInit {
               @Inject(FormBuilder) private formBuilder: FormBuilder,
               private uiUtils: PangoUiUtils,
               public viewCtrl: ViewController,
+              public loginFlowHandler: LoginFlowHandler,
               params: NavParams) {
 
     this.fatalErrorMessage = params.get('loginErrorMessage');
@@ -116,7 +118,7 @@ export class LoginPage implements OnInit {
       this.auth.login(this.login)
         .subscribe((loginResponse: LoginResponse) => {
           this.uiUtils.hideLoader();
-          this.dismiss(loginResponse)
+          this.dismiss(loginResponse);
         }, (error: Error) => {
           if (error.status === 401) {
             this.fatalErrorMessage = this.message401;
@@ -134,10 +136,11 @@ export class LoginPage implements OnInit {
   }
 
   signup() {
-    this.navCtrl.setRoot(SignupPage);
+    this.dismiss({goto: LoginFlowHandler.FLOW_TYPES.REGISTRATION});
+    //this.navCtrl.setRoot(SignupPage);
   }
 
   goToForgotPassword(){
-    this.navCtrl.setRoot(ForgotPasswordPage)
+    this.dismiss({goto: LoginFlowHandler.FLOW_TYPES.FORGOT_PASSWORD});
   }
 }

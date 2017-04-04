@@ -6,7 +6,7 @@ import {PlatformDetails} from '../../providers/platform-details';
 import {RegistrationService} from "../../providers/registration";
 import {Auth} from "../../providers/auth";
 import {RentTabsPage} from "../../pages/rent-tabs/rent-tabs";
-
+import {LoginFlowHandler} from '../../providers/login-flow-handler';
 @Component({
   selector: 'pango-navbar',
   templateUrl: 'pango-navbar.html'
@@ -31,9 +31,9 @@ export class PangoNavbar {
   @Output('onCancel') cancel: EventEmitter<any> = new EventEmitter();
 
   constructor(public navCtrl: NavController,
-              private modalCtrl: ModalController,
               public platformDetails: PlatformDetails,
               private registrationService: RegistrationService,
+              private loginFlow: LoginFlowHandler,
               public auth: Auth) {
 
     // todo: Tidy up the settings for which links to show based on their registered and login status.
@@ -61,16 +61,16 @@ export class PangoNavbar {
   }
 
   navSignin() {
-    let loginModal = this.modalCtrl.create(LoginPage);
-    loginModal.present();
+    this.loginFlow.showLoginModal(this.navCtrl);
   }
 
   navSignup() {
+
     this.navCtrl.setRoot(SignupPage);
   }
 
   navLogout() {
     this.auth.logOut();
-    this.navCtrl.setRoot(RentTabsPage);
+    this.navCtrl.popTo(RentTabsPage);
   }
 }

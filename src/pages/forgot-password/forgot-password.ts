@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ViewController} from 'ionic-angular';
 import {RegistrationService} from "../../providers/registration";
-import {SignupPage} from "../signup/signup";
-
+import { LoginFlowHandler } from '../../providers/login-flow-handler';
 @Component({
   selector: 'page-forgot-password',
   templateUrl: 'forgot-password.html'
@@ -14,6 +13,7 @@ export class ForgotPasswordPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public viewCtrl: ViewController,
               public registrationService: RegistrationService) {
     // Retrieve the email address from local storage and mask it.
     registrationService.getUserEmailAddressMasked().subscribe((emailAddress: string) => {
@@ -37,6 +37,6 @@ export class ForgotPasswordPage {
   }
 
   goToCreateNewAccount() {
-    this.navCtrl.setRoot(SignupPage);
+    this.viewCtrl.dismiss({goto: LoginFlowHandler.FLOW_TYPES.REGISTRATION});
   }
 }
